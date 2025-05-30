@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
+
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -58,10 +60,20 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(projects.core)
                 implementation(projects.data)
 
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
+
+                implementation(libs.kotlinx.serialization.json)
+
+                // ktor
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.negotiation)
+                implementation(libs.ktor.client.json)
+                implementation(libs.ktor.client.logging)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
 
