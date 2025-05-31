@@ -1,5 +1,8 @@
 package com.kmp.movie.data.model
 
+import com.kmp.movie.data.DataConstants
+import com.kmp.movie.data.DataConstants.backDropImageUrl
+import com.kmp.movie.data.DataConstants.posterImageUrl
 import com.kmp.movie.data.DataMapper
 import com.kmp.movie.domain.model.NowPlayingMovie
 import com.kmp.movie.domain.model.NowPlayingMovieData
@@ -63,14 +66,14 @@ data class NowPlayingMovieDataEntity(
     override fun toDomain(): NowPlayingMovieData {
         return NowPlayingMovieData(
             adult = adult,
-            backdropPath = backdropPath,
+            backdropPath = backDropImageUrl(backdropPath),
             genreIds = genreIds,
             id = id,
             originalLanguage = originalLanguage,
             originalTitle = originalTitle,
             overview = overview,
             popularity = popularity,
-            posterPath = posterPath,
+            posterPath = posterImageUrl(posterPath),
             releaseDate = releaseDate,
             title = title,
             video = video,
