@@ -1,8 +1,14 @@
 package com.kmp.movie.presentation.ui.home
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -43,17 +49,18 @@ private fun HomeScreen(
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
+            //.windowInsetsPadding(WindowInsets.safeDrawing)
         ,
         containerColor = Color.Black,
     ) {
         LazyVerticalGrid(
             modifier = Modifier
                 .padding(it)
-                .padding(12.dp),
+                .padding(16.dp),
             state = gridState,
             columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             itemsIndexed(
                 items = homeState.nowPlayingMovieList,

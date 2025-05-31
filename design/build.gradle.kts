@@ -69,6 +69,9 @@ kotlin {
                 implementation(compose.components.resources)
 
                 implementation(libs.bundles.coil)
+
+                implementation(libs.material.icons.core)
+
             }
         }
 
