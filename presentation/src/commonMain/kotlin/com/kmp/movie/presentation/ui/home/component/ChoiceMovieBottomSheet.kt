@@ -23,14 +23,14 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.presentation.type.MovieType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChoiceMovieBottomSheet(
+fun ChoiceMovieTypeBottomSheet(
     onBottomSheetClose: () -> Unit,
-    onSelectMovie: (String) -> Unit,
+    onSelectMovie: (MovieType) -> Unit,
 ){
-
     val sheetState = rememberStandardBottomSheetState(
         initialValue = SheetValue.Expanded,
         skipHiddenState = false
@@ -55,40 +55,19 @@ fun ChoiceMovieBottomSheet(
                 onSheetClose = onBottomSheetClose,
             )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp)
-                    .clickable {
-                        onBottomSheetClose()
-                        onSelectMovie("상영중인 영화")
-                    }
-            ){
-                Text(
-                    text = "상영중인 영화",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-            }
+            MovieTypeItem(
+                movieTypeText = MovieType.NOW_PLAYING.displayName,
+                onClick = { onSelectMovie(MovieType.NOW_PLAYING) },
+            )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp)
-                    .clickable {
-                        onBottomSheetClose()
-                        onSelectMovie("개봉예정 영화")
-                    }
-            ){
-                Text(
-                    text = "개봉예정 영화",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-            }
+            MovieTypeItem(
+                movieTypeText = MovieType.UPCOMING.displayName,
+                onClick = { onSelectMovie(MovieType.UPCOMING) },
+            )
         }
     }
 }
+
 
 @Composable
 fun BottomSheetTitleArea(
@@ -106,13 +85,6 @@ fun BottomSheetTitleArea(
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
         )
-        /*Text(
-            modifier = Modifier.align(Alignment.Center),
-            text = titleText,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold,
-            align = Alignment.Center,
-        )*/
 
         Icon(
             imageVector = Icons.Default.Close,
@@ -122,6 +94,27 @@ fun BottomSheetTitleArea(
                 .padding(end = 16.dp)
                 .size(24.dp)
                 .clickable { onSheetClose() }
+        )
+    }
+}
+
+@Composable
+fun MovieTypeItem(
+    movieTypeText: String,
+    onClick: () -> Unit,
+){
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp)
+            .clickable {
+                onClick()
+            },
+        contentAlignment = Alignment.CenterStart
+    ){
+        Text(
+            text = movieTypeText,
+            fontSize = 16.sp,
         )
     }
 }

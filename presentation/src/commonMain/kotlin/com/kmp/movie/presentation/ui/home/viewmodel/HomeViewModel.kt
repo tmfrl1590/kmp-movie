@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.kmp.movie.core.domain.onSuccess
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
+import com.kmp.movie.presentation.model.toHomeModel
 import com.kmp.movie.presentation.model.toPresentation
 import com.kmp.movie.presentation.ui.home.action.HomeAction
 import com.kmp.movie.presentation.ui.home.state.HomeState
@@ -23,11 +24,6 @@ class HomeViewModel(
     private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
 
-    init {
-        getNowPlayingMovieList()
-        getUpComingMovieList()
-    }
-
     fun getNowPlayingMovieList(){
         viewModelScope.launch(Dispatchers.IO) {
             getNowPlayingMovieListUseCase(
@@ -36,7 +32,7 @@ class HomeViewModel(
                 page = 1
             ).onSuccess { result ->
                 val data = result.toPresentation()
-                _state.update { it.copy(nowPlayingMovieList = data.results) }
+                _state.update { it.copy(homeMovieList = data.results.map { it.toHomeModel()}) }
             }
         }
     }
@@ -49,7 +45,7 @@ class HomeViewModel(
                 page = 1
             ).onSuccess { result ->
                 val data = result.toPresentation()
-                _state.update { it.copy(upComingMovieList = data.results) }
+                _state.update { it.copy(homeMovieList = data.results.map { it.toHomeModel()}) }
             }
         }
     }
@@ -57,7 +53,7 @@ class HomeViewModel(
     fun onAction(action: HomeAction){
         when(action){
             is HomeAction.OnShowBottomSheet -> _state.update { it.copy(isShowBottomSheet = action.isShowSheet) }
-            is HomeAction.OnSelectMovieType -> _state.update { it.copy(selectedMovieType = action.selectedMovieType) }
+            is HomeAction.OnSelectMovieType -> _state.update { it.copy(selectedMovieType = action.selectedMovieType, isShowBottomSheet = false) }
         }
     }
 }

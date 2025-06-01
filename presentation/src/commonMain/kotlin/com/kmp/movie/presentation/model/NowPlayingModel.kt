@@ -24,3 +24,10 @@ fun NowPlayingMovieData.toPresentation(): NowPlayingMovieDataModel = NowPlayingM
     voteAverage = voteAverage,
     voteCount = voteCount
 )
+
+fun NowPlayingMovieDataModel.toHomeModel(): HomeMovieModel = HomeMovieModel(
+    title = title,
+    posterPath = posterPath,
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+)

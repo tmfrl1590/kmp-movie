@@ -24,3 +24,10 @@ fun UpComingMovieData.toPresentation(): UpComingMovieDataModel = UpComingMovieDa
     voteAverage = voteAverage,
     voteCount = voteCount
 )
+
+fun UpComingMovieDataModel.toHomeModel(): HomeMovieModel = HomeMovieModel(
+    title = title,
+    posterPath = posterPath,
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+)
