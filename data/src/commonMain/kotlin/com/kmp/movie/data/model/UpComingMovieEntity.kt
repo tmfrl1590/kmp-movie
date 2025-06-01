@@ -3,35 +3,35 @@ package com.kmp.movie.data.model
 import com.kmp.movie.data.DataConstants.backDropImageUrl
 import com.kmp.movie.data.DataConstants.posterImageUrl
 import com.kmp.movie.data.DataMapper
-import com.kmp.movie.domain.model.NowPlayingMovie
-import com.kmp.movie.domain.model.NowPlayingMovieData
+import com.kmp.movie.domain.model.UpComingMovie
+import com.kmp.movie.domain.model.UpComingMovieData
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NowPlayingMovieEntity(
-    val dates: NowPlayingMovieDateEntity,
-    val results: List<NowPlayingMovieDataEntity>
-): DataMapper<NowPlayingMovie> {
-    override fun toDomain(): NowPlayingMovie {
-        return NowPlayingMovie(
+data class UpComingMovieEntity(
+    val dates: UpComingMovieDateEntity,
+    val results: List<UpComingMovieDataEntity>
+): DataMapper<UpComingMovie> {
+    override fun toDomain(): UpComingMovie {
+        return UpComingMovie(
             results = results.map { it.toDomain() }
         )
     }
 }
 
 @Serializable
-data class NowPlayingMovieDateEntity(
+data class UpComingMovieDateEntity(
     val maximum: String,
     val minimum: String
 )
 
 @Serializable
-data class NowPlayingMovieDataEntity(
+data class UpComingMovieDataEntity(
     val adult: Boolean,
 
     @SerialName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
 
     @SerialName("genre_ids")
     val genreIds: List<Int>,
@@ -61,9 +61,9 @@ data class NowPlayingMovieDataEntity(
 
     @SerialName("vote_count")
     val voteCount: Int
-): DataMapper<NowPlayingMovieData> {
-    override fun toDomain(): NowPlayingMovieData {
-        return NowPlayingMovieData(
+): DataMapper<UpComingMovieData> {
+    override fun toDomain(): UpComingMovieData {
+        return UpComingMovieData(
             adult = adult,
             backdropPath = backDropImageUrl(backdropPath),
             genreIds = genreIds,

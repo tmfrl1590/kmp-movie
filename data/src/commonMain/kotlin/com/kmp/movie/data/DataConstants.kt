@@ -7,7 +7,7 @@ object DataConstants {
     const val PROFILE_IMAGE_PREFIX_URL = "${IMAGE_PREFIX_URL}/w185"
     const val YOUTUBE_PREFIX_URL = "https://www.youtube.com/watch?v="
 
-    fun backDropImageUrl(urlString: String): String{
+    fun backDropImageUrl(urlString: String?): String{
         return "$BACKDROP_IMAGE_PREFIX_URL$urlString"
     }
     fun posterImageUrl(urlString: String): String{
