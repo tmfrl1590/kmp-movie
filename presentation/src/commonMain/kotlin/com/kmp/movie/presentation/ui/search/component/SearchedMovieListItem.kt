@@ -1,4 +1,4 @@
-package com.kmp.movie.design
+package com.kmp.movie.presentation.ui.search.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,9 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.design.AsyncImage
 
 @Composable
-fun MovieListItem(
+fun SearchedMovieListItem(
     modifier: Modifier,
     urlString: String,
     title: String,

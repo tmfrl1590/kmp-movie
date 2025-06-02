@@ -10,7 +10,7 @@ object DataConstants {
     fun backDropImageUrl(urlString: String?): String{
         return "$BACKDROP_IMAGE_PREFIX_URL$urlString"
     }
-    fun posterImageUrl(urlString: String): String{
+    fun posterImageUrl(urlString: String?): String{
         return "$POSTER_IMAGE_PREFIX_URL$urlString"
     }
 }

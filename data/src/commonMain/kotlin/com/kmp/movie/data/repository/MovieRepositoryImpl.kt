@@ -6,6 +6,7 @@ import com.kmp.movie.core.domain.map
 import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.domain.model.NowPlayingMovie
 import com.kmp.movie.domain.model.PopularMovie
+import com.kmp.movie.domain.model.SearchMovie
 import com.kmp.movie.domain.model.UpComingMovie
 import com.kmp.movie.domain.repository.MovieRepository
 
@@ -45,6 +46,16 @@ class MovieRepositoryImpl(
             language = language,
             page = page,
             region = region
+        ).map { it.toDomain() }
+    }
+
+    override suspend fun getSearchedMovies(
+        query: String,
+        language: String
+    ): Result<SearchMovie, DataError> {
+        return movieRemoteDataSource.getSearchedMovies(
+            query = query,
+            language = language
         ).map { it.toDomain() }
     }
 }

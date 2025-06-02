@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 fun SelectMovieAndSearchArea(
     selectedMovieTypeText: String,
     onShowBottomSheet: (Boolean) -> Unit,
+    onGotoSearch: () -> Unit,
 ){
     Row(
         modifier = Modifier
@@ -63,7 +64,7 @@ fun SelectMovieAndSearchArea(
         }
 
         IconButton(
-            onClick = {},
+            onClick = onGotoSearch,
         ) {
             Icon(
                 imageVector = Icons.Filled.Search,

@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.presentation.ui.home.HomeScreenRoute
+import com.kmp.movie.presentation.ui.search.SearchScreenRoute
 
 const val ANIMATION_DURATION = 500
 
@@ -53,6 +54,11 @@ fun AppNavHost() {
     ){
         composable<Screens.Home> {
             HomeScreenRoute(
+                navController = navController
+            )
+        }
+        composable<Screens.Search> {
+            SearchScreenRoute(
                 navController = navController
             )
         }

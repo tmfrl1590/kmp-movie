@@ -5,6 +5,7 @@ import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
 import com.kmp.movie.data.model.NowPlayingMovieEntity
 import com.kmp.movie.data.model.PopularMovieEntity
+import com.kmp.movie.data.model.SearchMovieEntity
 import com.kmp.movie.data.model.UpComingMovieEntity
 import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.remote.RemoteConstants.serverUrl
@@ -59,6 +60,20 @@ class MovieRemoteDataSourceImpl(
                 parameter("language", language)
                 parameter("page", page)
                 parameter("region", region)
+            }
+        }
+    }
+
+    override suspend fun getSearchedMovies(
+        query: String,
+        language: String
+    ): Result<SearchMovieEntity, DataError> {
+        return safeCall<SearchMovieEntity> {
+            httpClient.get(
+                urlString = serverUrl("/search/movie")
+            ) {
+                parameter("query", query)
+                parameter("language", language)
             }
         }
     }

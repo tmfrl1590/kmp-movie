@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.kmp.movie.design.MovieListItem
+import com.kmp.movie.design.HomeMovieListItem
 import com.kmp.movie.presentation.model.HomeMovieModel
 
 @Composable
@@ -31,7 +31,7 @@ fun HomeMovieListArea(
                 index
             }
         ){_, item ->
-            MovieListItem(
+            HomeMovieListItem(
                 modifier = Modifier,
                 urlString = item.posterPath,
                 title = item.title,

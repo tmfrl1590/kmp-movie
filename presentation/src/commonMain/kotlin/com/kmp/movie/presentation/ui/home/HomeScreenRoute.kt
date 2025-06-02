@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.presentation.type.MovieType
 import com.kmp.movie.presentation.ui.home.action.HomeAction
 import com.kmp.movie.presentation.ui.home.component.ChoiceMovieTypeBottomSheet
@@ -42,7 +43,8 @@ fun HomeScreenRoute(
         homeState = homeState,
         onAction = { action ->
             homeViewModel.onAction(action = action)
-        }
+        },
+        onGotoSearch = { navController.navigate(Screens.Search)}
     )
 }
 
@@ -50,6 +52,7 @@ fun HomeScreenRoute(
 private fun HomeScreen(
     homeState: HomeState,
     onAction: (HomeAction) -> Unit,
+    onGotoSearch: () -> Unit,
 ){
     Scaffold(
         modifier = Modifier
@@ -68,7 +71,8 @@ private fun HomeScreen(
                 selectedMovieTypeText = homeState.selectedMovieType.displayName,
                 onShowBottomSheet = {
                     onAction(HomeAction.OnShowBottomSheet(it))
-                }
+                },
+                onGotoSearch = onGotoSearch
             )
 
             Spacer(modifier = Modifier.height(24.dp))

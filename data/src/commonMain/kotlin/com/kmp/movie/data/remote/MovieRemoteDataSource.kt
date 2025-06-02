@@ -4,6 +4,7 @@ import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
 import com.kmp.movie.data.model.NowPlayingMovieEntity
 import com.kmp.movie.data.model.PopularMovieEntity
+import com.kmp.movie.data.model.SearchMovieEntity
 import com.kmp.movie.data.model.UpComingMovieEntity
 
 interface MovieRemoteDataSource {
@@ -25,4 +26,9 @@ interface MovieRemoteDataSource {
         page: Int,
         region: String,
     ): Result<PopularMovieEntity, DataError>
+
+    suspend fun getSearchedMovies(
+        query: String,
+        language: String,
+    ): Result<SearchMovieEntity, DataError>
 }
