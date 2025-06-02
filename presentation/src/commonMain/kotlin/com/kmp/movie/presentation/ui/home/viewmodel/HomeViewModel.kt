@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kmp.movie.core.domain.onSuccess
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
+import com.kmp.movie.domain.usecase.GetPopularMovieListUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
 import com.kmp.movie.presentation.model.toHomeModel
 import com.kmp.movie.presentation.model.toPresentation
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val getNowPlayingMovieListUseCase: GetNowPlayingMovieListUseCase,
     private val getUpComingMovieListUseCase: GetUpComingMovieListUseCase,
+    private val getPopularMovieListUseCase: GetPopularMovieListUseCase,
 ): ViewModel() {
 
     private val _state = MutableStateFlow(HomeState())
@@ -40,6 +42,19 @@ class HomeViewModel(
     fun getUpComingMovieList(){
         viewModelScope.launch(Dispatchers.IO) {
             getUpComingMovieListUseCase(
+                language = "ko",
+                region = "KR",
+                page = 1
+            ).onSuccess { result ->
+                val data = result.toPresentation()
+                _state.update { it.copy(homeMovieList = data.results.map { it.toHomeModel()}) }
+            }
+        }
+    }
+
+    fun getPopularMovieList(){
+        viewModelScope.launch(Dispatchers.IO) {
+            getPopularMovieListUseCase(
                 language = "ko",
                 region = "KR",
                 page = 1

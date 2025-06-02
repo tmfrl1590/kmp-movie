@@ -5,6 +5,7 @@ import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.data.repository.MovieRepositoryImpl
 import com.kmp.movie.domain.repository.MovieRepository
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
+import com.kmp.movie.domain.usecase.GetPopularMovieListUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
 import com.kmp.movie.remote.network.MovieRemoteDataSourceImpl
@@ -27,6 +28,7 @@ val viewModelModule = module {
 val useCaseModule = module {
     factory { GetNowPlayingMovieListUseCase(get()) }
     factory { GetUpComingMovieListUseCase(get()) }
+    factory { GetPopularMovieListUseCase(get()) }
 }
 
 val repositoryModule = module {

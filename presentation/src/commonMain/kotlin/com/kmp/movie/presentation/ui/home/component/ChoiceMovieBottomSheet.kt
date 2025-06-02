@@ -51,7 +51,6 @@ fun ChoiceMovieTypeBottomSheet(
                 .padding(horizontal = 20.dp)
         ) {
             BottomSheetTitleArea(
-                titleText = "영화타입을 선택해주세요",
                 onSheetClose = onBottomSheetClose,
             )
 
@@ -64,14 +63,18 @@ fun ChoiceMovieTypeBottomSheet(
                 movieTypeText = MovieType.UPCOMING.displayName,
                 onClick = { onSelectMovie(MovieType.UPCOMING) },
             )
+
+            MovieTypeItem(
+                movieTypeText = MovieType.POPULAR.displayName,
+                onClick = { onSelectMovie(MovieType.POPULAR) },
+            )
         }
     }
 }
 
 
 @Composable
-fun BottomSheetTitleArea(
-    titleText: String,
+private fun BottomSheetTitleArea(
     onSheetClose: () -> Unit,
 ) {
     Box(
@@ -81,7 +84,7 @@ fun BottomSheetTitleArea(
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = titleText,
+            text = "영화타입을 선택해주세요",
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
         )
@@ -99,7 +102,7 @@ fun BottomSheetTitleArea(
 }
 
 @Composable
-fun MovieTypeItem(
+private fun MovieTypeItem(
     movieTypeText: String,
     onClick: () -> Unit,
 ){

@@ -3,6 +3,7 @@ package com.kmp.movie.data.remote
 import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
 import com.kmp.movie.data.model.NowPlayingMovieEntity
+import com.kmp.movie.data.model.PopularMovieEntity
 import com.kmp.movie.data.model.UpComingMovieEntity
 
 interface MovieRemoteDataSource {
@@ -18,4 +19,10 @@ interface MovieRemoteDataSource {
         page: Int,
         region: String,
     ): Result<UpComingMovieEntity, DataError>
+
+    suspend fun getPopularMovies(
+        language: String,
+        page: Int,
+        region: String,
+    ): Result<PopularMovieEntity, DataError>
 }

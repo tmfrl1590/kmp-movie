@@ -34,6 +34,7 @@ fun HomeScreenRoute(
         when(homeState.selectedMovieType){
             MovieType.NOW_PLAYING -> homeViewModel.getNowPlayingMovieList()
             MovieType.UPCOMING -> homeViewModel.getUpComingMovieList()
+            MovieType.POPULAR -> homeViewModel.getPopularMovieList()
         }
     }
 
