@@ -128,7 +128,8 @@ private fun GenreCard(
             .height(32.dp)
         ,
         colors = CardDefaults.cardColors(
-            containerColor = Color.DarkGray
+            containerColor = Color.DarkGray,
+            contentColor = Color.White
         ),
         shape = RoundedCornerShape(999.dp)
     ) {
