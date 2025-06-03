@@ -16,7 +16,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
-import com.kmp.movie.design.ICON_SIZE
 import com.kmp.movie.design.InputField
 
 @Composable
@@ -36,6 +35,7 @@ fun SearchInputArea(
             .focusRequester(focusRequester)
         ,
         inputText = inputText,
+        placeHolder = "영화제목을 입력해주세요",
         onValueChange = onValueChange,
         leadingIcon = {
             IconButton(
@@ -61,7 +61,7 @@ fun SearchInputArea(
                         imageVector = Icons.Default.Close,
                         contentDescription = "close",
                         modifier = Modifier
-                            .size(ICON_SIZE)
+                            .size(20.dp)
                     )
                 }
             }
@@ -72,7 +72,7 @@ fun SearchInputArea(
                 focusManager.clearFocus()
                 keyboardController?.hide()
                 onSearch()
-            }
+            },
         )
     )
 }

@@ -15,13 +15,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
-val ICON_SIZE = 20.dp
-const val SEARCH_BAR_PLACE_HOLDER = "책 이름을 입력해주세요"
-
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,
     inputText: String,
+    placeHolder: String,
     maxLines: Int = 1,
     singleLine: Boolean = true,
     onValueChange: (String) -> Unit,
@@ -41,7 +39,7 @@ fun InputField(
         value = inputText,
         onValueChange = onValueChange,
         placeholder = {
-            Text(text = SEARCH_BAR_PLACE_HOLDER)
+            Text(text = placeHolder)
         },
         singleLine = singleLine,
         maxLines = maxLines,
