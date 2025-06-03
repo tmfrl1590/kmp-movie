@@ -1,5 +1,6 @@
 package com.kmp.movie.presentation.ui.search.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,9 +31,13 @@ fun SearchedMovieListItem(
     title: String,
     voteAverage: Double,
     voteCount: Int,
+    onClickMovie: () -> Unit,
 ){
     Column(
         modifier = modifier
+            .clickable {
+                onClickMovie()
+            }
     ) {
         AsyncImage(
             urlString = urlString,

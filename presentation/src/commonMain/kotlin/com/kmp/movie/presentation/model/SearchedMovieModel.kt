@@ -8,6 +8,7 @@ data class SearchedMovieModel(
 )
 
 data class SearchedMovieDataModel(
+    val id: Int,
     val title: String,
     val posterPath: String,
     val voteAverage: Double,
@@ -19,6 +20,7 @@ fun SearchMovie.toPresentation(): SearchedMovieModel = SearchedMovieModel(
 )
 
 fun SearchMovieData.toPresentation(): SearchedMovieDataModel = SearchedMovieDataModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,

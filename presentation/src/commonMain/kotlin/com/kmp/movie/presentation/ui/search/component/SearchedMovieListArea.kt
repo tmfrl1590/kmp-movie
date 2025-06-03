@@ -20,7 +20,8 @@ import com.kmp.movie.presentation.model.SearchedMovieDataModel
 @Composable
 fun SearchedMovieListArea(
     modifier: Modifier,
-    movieList: List<SearchedMovieDataModel>
+    movieList: List<SearchedMovieDataModel>,
+    onClickMovie: (Int) -> Unit,
 ){
     val gridState = rememberLazyGridState()
 
@@ -55,7 +56,10 @@ fun SearchedMovieListArea(
                     urlString = item.posterPath,
                     title = item.title,
                     voteAverage = item.voteAverage,
-                    voteCount = item.voteCount
+                    voteCount = item.voteCount,
+                    onClickMovie = {
+                        onClickMovie(item.id)
+                    }
                 )
             }
         }

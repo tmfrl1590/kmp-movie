@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.presentation.ui.search.action.SearchAction
 import com.kmp.movie.presentation.ui.search.component.SearchInputArea
 import com.kmp.movie.presentation.ui.search.component.SearchedMovieListArea
@@ -31,7 +32,8 @@ fun SearchScreenRoute(
         searchState = searchState,
         onAction = { action ->
             searchViewModel.onAction(action = action)
-        }
+        },
+        onClickMovie = { navController.navigate(Screens.Detail(it))},
     )
 }
 
@@ -39,6 +41,7 @@ fun SearchScreenRoute(
 private fun SearchScreen(
     searchState: SearchState,
     onAction: (SearchAction) -> Unit,
+    onClickMovie: (Int) -> Unit,
 ){
     Scaffold(
         modifier = Modifier
@@ -64,7 +67,8 @@ private fun SearchScreen(
             SearchedMovieListArea(
                 modifier = Modifier
                     .weight(1f),
-                movieList = searchState.searchedMovieList
+                movieList = searchState.searchedMovieList,
+                onClickMovie = onClickMovie,
             )
         }
     }
