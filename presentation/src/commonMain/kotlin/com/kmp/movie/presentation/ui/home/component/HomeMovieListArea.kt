@@ -2,6 +2,8 @@ package com.kmp.movie.presentation.ui.home.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
@@ -38,6 +40,9 @@ fun HomeMovieListArea(
                     .clickable {
                         onClickMovie(item.id)
                     },
+                asyncImageModifier = Modifier
+                    .height(240.dp)
+                    .padding(bottom = 8.dp),
                 urlString = item.posterPath,
                 title = item.title,
                 voteAverage = item.voteAverage,

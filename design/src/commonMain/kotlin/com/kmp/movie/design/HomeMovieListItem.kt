@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun HomeMovieListItem(
     modifier: Modifier,
+    asyncImageModifier: Modifier,
     urlString: String,
     title: String,
     voteAverage: Double,
@@ -35,9 +36,7 @@ fun HomeMovieListItem(
     ) {
         AsyncImage(
             urlString = urlString,
-            modifier = Modifier
-                .height(240.dp)
-                .padding(bottom = 8.dp)
+            modifier = asyncImageModifier
         )
 
         Text(

@@ -9,6 +9,7 @@ import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
 import com.kmp.movie.domain.usecase.GetPopularMovieListUseCase
 import com.kmp.movie.domain.usecase.GetSearchedMovieListUseCase
+import com.kmp.movie.domain.usecase.GetSimilarMovieUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
 import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
@@ -39,6 +40,7 @@ val useCaseModule = module {
     factory { GetSearchedMovieListUseCase(get()) }
     factory { GetMovieDetailUseCase(get()) }
     factory { GetMovieCreditsUseCase(get()) }
+    factory { GetSimilarMovieUseCase(get()) }
 }
 
 val repositoryModule = module {

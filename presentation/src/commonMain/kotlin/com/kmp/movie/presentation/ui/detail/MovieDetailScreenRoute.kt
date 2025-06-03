@@ -22,10 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.detail.component.MovieCreditArea
 import com.kmp.movie.presentation.ui.detail.component.MovieImage
 import com.kmp.movie.presentation.ui.detail.component.MovieInfoArea
+import com.kmp.movie.presentation.ui.detail.component.SimilarMovieListArea
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
 import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
 import org.koin.compose.viewmodel.koinViewModel
@@ -41,11 +43,13 @@ fun MovieDetailScreenRoute(
     LaunchedEffect( key1 = movieId) {
         movieDetailMovieModel.getMovieDetail(movieId = movieId)
         movieDetailMovieModel.getMovieCredit(movieId = movieId)
+        movieDetailMovieModel.getSimilarMovie(movieId = movieId)
     }
 
     MovieDetailScreen(
         state = state,
-        onGotoNavigateBack = { navController.popBackStack() }
+        onGotoNavigateBack = { navController.popBackStack() },
+        onClickMovie = { navController.navigate(Screens.Detail(it))}
     )
 }
 
@@ -54,6 +58,7 @@ fun MovieDetailScreenRoute(
 private fun MovieDetailScreen(
     state: MovieDetailState,
     onGotoNavigateBack: () -> Unit,
+    onClickMovie: (Int) -> Unit,
 ){
     val scrollState = rememberScrollState()
     Scaffold(
@@ -116,7 +121,17 @@ private fun MovieDetailScreen(
 
             Spacer(
                 modifier = Modifier
-                    .height(20.dp)
+                    .height(32.dp)
+            )
+
+            SimilarMovieListArea(
+                similarMovieList = state.similarMovie.results,
+                onClickMovie = onClickMovie,
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
             )
         }
     }

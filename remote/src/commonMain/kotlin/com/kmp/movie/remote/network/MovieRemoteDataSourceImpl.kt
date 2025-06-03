@@ -9,6 +9,7 @@ import com.kmp.movie.data.model.MovieCreditEntity
 import com.kmp.movie.data.model.NowPlayingMovieEntity
 import com.kmp.movie.data.model.PopularMovieEntity
 import com.kmp.movie.data.model.SearchMovieEntity
+import com.kmp.movie.data.model.SimilarMovieEntity
 import com.kmp.movie.data.model.UpComingMovieEntity
 import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.remote.RemoteConstants.serverUrl
@@ -101,6 +102,19 @@ class MovieRemoteDataSourceImpl(
         return safeCall<MovieCreditEntity> {
             httpClient.get(
                 urlString = serverUrl("/movie/$movieId/credits")
+            ) {
+                parameter("language", language)
+            }
+        }
+    }
+
+    override suspend fun getSimilarMovies(
+        movieId: Int,
+        language: String
+    ): Result<SimilarMovieEntity, DataError> {
+        return safeCall<SimilarMovieEntity> {
+            httpClient.get(
+                urlString = serverUrl("/movie/$movieId/similar")
             ) {
                 parameter("language", language)
             }

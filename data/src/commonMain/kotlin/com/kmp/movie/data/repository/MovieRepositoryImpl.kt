@@ -9,6 +9,7 @@ import com.kmp.movie.domain.model.MovieCredit
 import com.kmp.movie.domain.model.NowPlayingMovie
 import com.kmp.movie.domain.model.PopularMovie
 import com.kmp.movie.domain.model.SearchMovie
+import com.kmp.movie.domain.model.SimilarMovie
 import com.kmp.movie.domain.model.UpComingMovie
 import com.kmp.movie.domain.repository.MovieRepository
 
@@ -76,6 +77,16 @@ class MovieRepositoryImpl(
         language: String
     ): Result<MovieCredit, DataError> {
         return movieRemoteDataSource.getMovieCredits(
+            movieId = movieId,
+            language = language
+        ).map { it.toDomain() }
+    }
+
+    override suspend fun getSimilarMoves(
+        movieId: Int,
+        language: String
+    ): Result<SimilarMovie, DataError> {
+        return movieRemoteDataSource.getSimilarMovies(
             movieId = movieId,
             language = language
         ).map { it.toDomain() }

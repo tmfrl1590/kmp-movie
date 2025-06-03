@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.kmp.movie.core.domain.onSuccess
 import com.kmp.movie.domain.usecase.GetMovieCreditsUseCase
 import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
+import com.kmp.movie.domain.usecase.GetSimilarMovieUseCase
 import com.kmp.movie.presentation.model.toPresentation
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 class MovieDetailViewModel(
     private val getMovieDetailUseCase: GetMovieDetailUseCase,
     private val getMovieCreditsUseCase: GetMovieCreditsUseCase,
+    private val getSimilarMovieUseCase: GetSimilarMovieUseCase,
 ): ViewModel() {
 
     private val _state = MutableStateFlow(MovieDetailState())
@@ -42,6 +44,18 @@ class MovieDetailViewModel(
             ).onSuccess { result ->
                 val data = result.toPresentation()
                 _state.update { it.copy(movieCredit = data) }
+            }
+        }
+    }
+
+    fun getSimilarMovie(movieId: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            getSimilarMovieUseCase(
+                movieId = movieId,
+                language = "ko",
+            ).onSuccess { result ->
+                val data = result.toPresentation()
+                _state.update { it.copy(similarMovie = data) }
             }
         }
     }
