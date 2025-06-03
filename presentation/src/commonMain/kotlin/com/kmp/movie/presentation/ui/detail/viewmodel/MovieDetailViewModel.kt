@@ -3,6 +3,7 @@ package com.kmp.movie.presentation.ui.detail.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kmp.movie.core.domain.onSuccess
+import com.kmp.movie.domain.usecase.GetMovieCreditsUseCase
 import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
 import com.kmp.movie.presentation.model.toPresentation
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
@@ -14,7 +15,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(
-    private val getMovieDetailUseCase: GetMovieDetailUseCase
+    private val getMovieDetailUseCase: GetMovieDetailUseCase,
+    private val getMovieCreditsUseCase: GetMovieCreditsUseCase,
 ): ViewModel() {
 
     private val _state = MutableStateFlow(MovieDetailState())
@@ -28,6 +30,18 @@ class MovieDetailViewModel(
             ).onSuccess { result ->
                 val data = result.toPresentation()
                 _state.update { it.copy(movieDeDetailInfo = data) }
+            }
+        }
+    }
+
+    fun getMovieCredit(movieId: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            getMovieCreditsUseCase(
+                movieId = movieId,
+                language = "ko",
+            ).onSuccess { result ->
+                val data = result.toPresentation()
+                _state.update { it.copy(movieCredit = data) }
             }
         }
     }

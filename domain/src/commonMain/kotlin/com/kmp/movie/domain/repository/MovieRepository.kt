@@ -3,6 +3,7 @@ package com.kmp.movie.domain.repository
 import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
 import com.kmp.movie.domain.model.DetailMovie
+import com.kmp.movie.domain.model.MovieCredit
 import com.kmp.movie.domain.model.NowPlayingMovie
 import com.kmp.movie.domain.model.PopularMovie
 import com.kmp.movie.domain.model.SearchMovie
@@ -37,4 +38,9 @@ interface MovieRepository {
         movieId: Int,
         language: String,
     ): Result<DetailMovie, DataError>
+
+    suspend fun getMovieCredits(
+        movieId: Int,
+        language: String,
+    ): Result<MovieCredit, DataError>
 }

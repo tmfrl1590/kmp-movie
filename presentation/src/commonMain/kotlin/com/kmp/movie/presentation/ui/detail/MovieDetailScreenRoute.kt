@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -14,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.kmp.movie.presentation.ui.detail.component.MovieCreditArea
 import com.kmp.movie.presentation.ui.detail.component.MovieImage
 import com.kmp.movie.presentation.ui.detail.component.MovieInfoArea
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
@@ -30,6 +33,7 @@ fun MovieDetailScreenRoute(
 
     LaunchedEffect( key1 = movieId) {
         movieDetailMovieModel.getMovieDetail(movieId = movieId)
+        movieDetailMovieModel.getMovieCredit(movieId = movieId)
     }
 
     MovieDetailScreen(
@@ -41,6 +45,7 @@ fun MovieDetailScreenRoute(
 private fun MovieDetailScreen(
     state: MovieDetailState,
 ){
+    val scrollState = rememberScrollState()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -51,6 +56,7 @@ private fun MovieDetailScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
+                .verticalScroll(scrollState)
             ,
         ) {
             MovieImage(
@@ -69,6 +75,20 @@ private fun MovieDetailScreen(
                 voteCount = state.movieDeDetailInfo.voteCount,
                 genreList = state.movieDeDetailInfo.genres,
                 overview = state.movieDeDetailInfo.overview,
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
+            )
+
+            MovieCreditArea(
+                movieCreditList = state.movieCredit.cast
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(20.dp)
             )
         }
     }

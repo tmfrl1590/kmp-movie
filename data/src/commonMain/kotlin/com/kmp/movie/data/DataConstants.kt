@@ -13,4 +13,8 @@ object DataConstants {
     fun posterImageUrl(urlString: String?): String{
         return "$POSTER_IMAGE_PREFIX_URL$urlString"
     }
+
+    fun profileImageUrl(urlString: String?): String{
+        return "$PROFILE_IMAGE_PREFIX_URL$urlString"
+    }
 }
