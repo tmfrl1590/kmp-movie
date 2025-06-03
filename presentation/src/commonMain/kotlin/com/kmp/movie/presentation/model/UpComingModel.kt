@@ -8,6 +8,7 @@ data class UpComingMovieModel(
 )
 
 data class UpComingMovieDataModel(
+    val id: Int,
     val title: String,
     val posterPath: String,
     val voteAverage: Double,
@@ -19,6 +20,7 @@ fun UpComingMovie.toPresentation(): UpComingMovieModel = UpComingMovieModel(
 )
 
 fun UpComingMovieData.toPresentation(): UpComingMovieDataModel = UpComingMovieDataModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,
@@ -26,6 +28,7 @@ fun UpComingMovieData.toPresentation(): UpComingMovieDataModel = UpComingMovieDa
 )
 
 fun UpComingMovieDataModel.toHomeModel(): HomeMovieModel = HomeMovieModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,

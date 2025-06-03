@@ -6,6 +6,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 
@@ -13,10 +14,11 @@ import coil3.compose.AsyncImage
 fun AsyncImage(
     modifier: Modifier,
     urlString: String,
+    radius: Dp = 16.dp
 ){
     AsyncImage(
         modifier = modifier
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(radius)),
         model = urlString,
         //placeholder = painterResource(Res.drawable.placeholder_ic),
         alignment = Alignment.CenterStart,

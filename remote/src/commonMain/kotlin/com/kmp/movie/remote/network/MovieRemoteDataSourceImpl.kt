@@ -3,6 +3,7 @@ package com.kmp.movie.remote.network
 import com.kmp.movie.core.data.safeCall
 import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
+import com.kmp.movie.data.model.DetailMovieEntity
 import com.kmp.movie.data.model.NowPlayingMovieEntity
 import com.kmp.movie.data.model.PopularMovieEntity
 import com.kmp.movie.data.model.SearchMovieEntity
@@ -73,6 +74,19 @@ class MovieRemoteDataSourceImpl(
                 urlString = serverUrl("/search/movie")
             ) {
                 parameter("query", query)
+                parameter("language", language)
+            }
+        }
+    }
+
+    override suspend fun getMovieDetails(
+        movieId: Int,
+        language: String
+    ): Result<DetailMovieEntity, DataError> {
+        return safeCall<DetailMovieEntity> {
+            httpClient.get(
+                urlString = serverUrl("/movie/$movieId")
+            ) {
                 parameter("language", language)
             }
         }

@@ -4,10 +4,12 @@ import com.kmp.movie.core.data.HttpClientFactory
 import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.data.repository.MovieRepositoryImpl
 import com.kmp.movie.domain.repository.MovieRepository
+import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
 import com.kmp.movie.domain.usecase.GetPopularMovieListUseCase
 import com.kmp.movie.domain.usecase.GetSearchedMovieListUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
+import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
 import com.kmp.movie.presentation.ui.search.viewmodel.SearchViewModel
 import com.kmp.movie.remote.network.MovieRemoteDataSourceImpl
@@ -26,6 +28,7 @@ val sharedModule = module {
 val viewModelModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::SearchViewModel)
+    viewModelOf(::MovieDetailViewModel)
 }
 
 val useCaseModule = module {
@@ -33,6 +36,7 @@ val useCaseModule = module {
     factory { GetUpComingMovieListUseCase(get()) }
     factory { GetPopularMovieListUseCase(get()) }
     factory { GetSearchedMovieListUseCase(get()) }
+    factory { GetMovieDetailUseCase(get()) }
 }
 
 val repositoryModule = module {

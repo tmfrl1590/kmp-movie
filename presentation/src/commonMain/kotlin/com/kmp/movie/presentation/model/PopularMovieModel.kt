@@ -8,6 +8,7 @@ data class PopularMovieModel(
 )
 
 data class PopularMovieDataModel(
+    val id: Int,
     val title: String,
     val posterPath: String,
     val voteAverage: Double,
@@ -19,6 +20,7 @@ fun PopularMovie.toPresentation(): PopularMovieModel = PopularMovieModel(
 )
 
 fun PopularMovieData.toPresentation(): PopularMovieDataModel = PopularMovieDataModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,
@@ -26,6 +28,7 @@ fun PopularMovieData.toPresentation(): PopularMovieDataModel = PopularMovieDataM
 )
 
 fun PopularMovieDataModel.toHomeModel(): HomeMovieModel = HomeMovieModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,

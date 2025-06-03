@@ -44,7 +44,8 @@ fun HomeScreenRoute(
         onAction = { action ->
             homeViewModel.onAction(action = action)
         },
-        onGotoSearch = { navController.navigate(Screens.Search)}
+        onGotoSearch = { navController.navigate(Screens.Search)},
+        onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId) ) }
     )
 }
 
@@ -53,6 +54,7 @@ private fun HomeScreen(
     homeState: HomeState,
     onAction: (HomeAction) -> Unit,
     onGotoSearch: () -> Unit,
+    onClickMovie: (Int) -> Unit,
 ){
     Scaffold(
         modifier = Modifier
@@ -81,6 +83,7 @@ private fun HomeScreen(
                 modifier = Modifier
                     .weight(1f),
                 homeMovieList = homeState.homeMovieList,
+                onClickMovie = onClickMovie
             )
         }
     }

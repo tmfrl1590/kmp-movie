@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.kmp.movie.core.presentation.Screens
+import com.kmp.movie.presentation.ui.detail.MovieDetailScreenRoute
 import com.kmp.movie.presentation.ui.home.HomeScreenRoute
 import com.kmp.movie.presentation.ui.search.SearchScreenRoute
 
@@ -60,6 +62,13 @@ fun AppNavHost() {
         composable<Screens.Search> {
             SearchScreenRoute(
                 navController = navController
+            )
+        }
+        composable<Screens.Detail> { backStackEntry ->
+            val movieId = backStackEntry.toRoute<Screens.Detail>().movieId
+            MovieDetailScreenRoute(
+                navController = navController,
+                movieId = movieId,
             )
         }
     }

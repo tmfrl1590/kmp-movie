@@ -1,5 +1,6 @@
 package com.kmp.movie.presentation.ui.home.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -15,6 +16,7 @@ import com.kmp.movie.presentation.model.HomeMovieModel
 fun HomeMovieListArea(
     modifier: Modifier,
     homeMovieList: List<HomeMovieModel>,
+    onClickMovie: (Int) -> Unit,
 ){
     val gridState = rememberLazyGridState()
 
@@ -32,7 +34,10 @@ fun HomeMovieListArea(
             }
         ){_, item ->
             HomeMovieListItem(
-                modifier = Modifier,
+                modifier = Modifier
+                    .clickable {
+                        onClickMovie(item.id)
+                    },
                 urlString = item.posterPath,
                 title = item.title,
                 voteAverage = item.voteAverage,

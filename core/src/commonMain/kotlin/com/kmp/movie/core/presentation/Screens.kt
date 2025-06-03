@@ -7,4 +7,8 @@ sealed interface Screens {
     data object Home: Screens
     @Serializable
     data object Search: Screens
+    @Serializable
+    data class Detail(
+        val movieId: Int
+    ): Screens
 }

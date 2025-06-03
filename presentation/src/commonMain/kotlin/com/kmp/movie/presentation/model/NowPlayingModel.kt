@@ -8,6 +8,7 @@ data class NowPlayingMovieModel(
 )
 
 data class NowPlayingMovieDataModel(
+    val id: Int,
     val title: String,
     val posterPath: String,
     val voteAverage: Double,
@@ -19,6 +20,7 @@ fun NowPlayingMovie.toPresentation(): NowPlayingMovieModel = NowPlayingMovieMode
 )
 
 fun NowPlayingMovieData.toPresentation(): NowPlayingMovieDataModel = NowPlayingMovieDataModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,
@@ -26,6 +28,7 @@ fun NowPlayingMovieData.toPresentation(): NowPlayingMovieDataModel = NowPlayingM
 )
 
 fun NowPlayingMovieDataModel.toHomeModel(): HomeMovieModel = HomeMovieModel(
+    id = id,
     title = title,
     posterPath = posterPath,
     voteAverage = voteAverage,
