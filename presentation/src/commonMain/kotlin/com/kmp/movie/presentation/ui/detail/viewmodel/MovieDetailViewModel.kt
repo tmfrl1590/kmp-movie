@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.kmp.movie.core.domain.onSuccess
 import com.kmp.movie.domain.usecase.GetMovieCreditsUseCase
 import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
+import com.kmp.movie.domain.usecase.GetRecommendMovieUseCase
 import com.kmp.movie.domain.usecase.GetSimilarMovieUseCase
 import com.kmp.movie.presentation.model.toPresentation
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
@@ -19,6 +20,7 @@ class MovieDetailViewModel(
     private val getMovieDetailUseCase: GetMovieDetailUseCase,
     private val getMovieCreditsUseCase: GetMovieCreditsUseCase,
     private val getSimilarMovieUseCase: GetSimilarMovieUseCase,
+    private val getRecommendMovieUseCase: GetRecommendMovieUseCase,
 ): ViewModel() {
 
     private val _state = MutableStateFlow(MovieDetailState())
@@ -56,6 +58,18 @@ class MovieDetailViewModel(
             ).onSuccess { result ->
                 val data = result.toPresentation()
                 _state.update { it.copy(similarMovie = data) }
+            }
+        }
+    }
+
+    fun getRecommendMovie(movieId: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            getRecommendMovieUseCase(
+                movieId = movieId,
+                language = "ko",
+            ).onSuccess { result ->
+                val data = result.toPresentation()
+                _state.update { it.copy(recommendMovie = data) }
             }
         }
     }

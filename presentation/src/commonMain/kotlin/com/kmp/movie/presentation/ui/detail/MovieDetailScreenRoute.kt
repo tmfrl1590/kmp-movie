@@ -27,6 +27,7 @@ import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.detail.component.MovieCreditArea
 import com.kmp.movie.presentation.ui.detail.component.MovieImage
 import com.kmp.movie.presentation.ui.detail.component.MovieInfoArea
+import com.kmp.movie.presentation.ui.detail.component.RecommendMovieListArea
 import com.kmp.movie.presentation.ui.detail.component.SimilarMovieListArea
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
 import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
@@ -44,6 +45,7 @@ fun MovieDetailScreenRoute(
         movieDetailMovieModel.getMovieDetail(movieId = movieId)
         movieDetailMovieModel.getMovieCredit(movieId = movieId)
         movieDetailMovieModel.getSimilarMovie(movieId = movieId)
+        movieDetailMovieModel.getRecommendMovie(movieId = movieId)
     }
 
     MovieDetailScreen(
@@ -126,6 +128,16 @@ private fun MovieDetailScreen(
 
             SimilarMovieListArea(
                 similarMovieList = state.similarMovie.results,
+                onClickMovie = onClickMovie,
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
+            )
+
+            RecommendMovieListArea(
+                recommendMovieList = state.recommendMovie.results,
                 onClickMovie = onClickMovie,
             )
 

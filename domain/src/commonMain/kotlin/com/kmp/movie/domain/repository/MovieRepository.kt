@@ -6,6 +6,7 @@ import com.kmp.movie.domain.model.DetailMovie
 import com.kmp.movie.domain.model.MovieCredit
 import com.kmp.movie.domain.model.NowPlayingMovie
 import com.kmp.movie.domain.model.PopularMovie
+import com.kmp.movie.domain.model.RecommendMovie
 import com.kmp.movie.domain.model.SearchMovie
 import com.kmp.movie.domain.model.SimilarMovie
 import com.kmp.movie.domain.model.UpComingMovie
@@ -49,4 +50,9 @@ interface MovieRepository {
         movieId: Int,
         language: String,
     ): Result<SimilarMovie, DataError>
+
+    suspend fun getRecommendMovies(
+        movieId: Int,
+        language: String,
+    ): Result<RecommendMovie, DataError>
 }

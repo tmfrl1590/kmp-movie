@@ -7,6 +7,7 @@ import com.kmp.movie.data.model.MovieCreditCastEntity
 import com.kmp.movie.data.model.MovieCreditEntity
 import com.kmp.movie.data.model.NowPlayingMovieEntity
 import com.kmp.movie.data.model.PopularMovieEntity
+import com.kmp.movie.data.model.RecommendMovieEntity
 import com.kmp.movie.data.model.SearchMovieEntity
 import com.kmp.movie.data.model.SimilarMovieEntity
 import com.kmp.movie.data.model.UpComingMovieEntity
@@ -50,4 +51,9 @@ interface MovieRemoteDataSource {
         movieId: Int,
         language: String,
     ): Result<SimilarMovieEntity, DataError>
+
+    suspend fun getRecommendMovies(
+        movieId: Int,
+        language: String,
+    ): Result<RecommendMovieEntity, DataError>
 }
