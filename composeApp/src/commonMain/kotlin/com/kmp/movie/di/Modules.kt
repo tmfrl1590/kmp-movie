@@ -7,6 +7,7 @@ import com.kmp.movie.domain.repository.MovieRepository
 import com.kmp.movie.domain.usecase.GetMovieCreditsUseCase
 import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
+import com.kmp.movie.domain.usecase.GetPersonDetailUseCase
 import com.kmp.movie.domain.usecase.GetPopularMovieListUseCase
 import com.kmp.movie.domain.usecase.GetRecommendMovieUseCase
 import com.kmp.movie.domain.usecase.GetSearchedMovieListUseCase
@@ -14,6 +15,7 @@ import com.kmp.movie.domain.usecase.GetSimilarMovieUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
 import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
+import com.kmp.movie.presentation.ui.person_detail.viewmodel.PersonDetailViewModel
 import com.kmp.movie.presentation.ui.search.viewmodel.SearchViewModel
 import com.kmp.movie.remote.network.MovieRemoteDataSourceImpl
 import org.koin.core.module.Module
@@ -32,6 +34,7 @@ val viewModelModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::SearchViewModel)
     viewModelOf(::MovieDetailViewModel)
+    viewModelOf(::PersonDetailViewModel)
 }
 
 val useCaseModule = module {
@@ -43,6 +46,7 @@ val useCaseModule = module {
     factory { GetMovieCreditsUseCase(get()) }
     factory { GetSimilarMovieUseCase(get()) }
     factory { GetRecommendMovieUseCase(get()) }
+    factory { GetPersonDetailUseCase(get()) }
 }
 
 val repositoryModule = module {

@@ -1,5 +1,6 @@
 package com.kmp.movie.presentation.ui.detail.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,7 +22,8 @@ import com.kmp.movie.presentation.model.MovieCreditCastModel
 
 @Composable
 fun MovieCreditArea(
-    movieCreditList: List<MovieCreditCastModel>
+    movieCreditList: List<MovieCreditCastModel>,
+    onClickCreditCard: (Int) -> Unit,
 ){
     Column(
         modifier = Modifier
@@ -51,6 +53,7 @@ fun MovieCreditArea(
                 MovieCreditItem(
                     profilePath = item.profilePath,
                     name = item.name,
+                    onClickCreditCard = { onClickCreditCard(item.id) }
                 )
             }
         }
@@ -61,8 +64,13 @@ fun MovieCreditArea(
 private fun MovieCreditItem(
     profilePath: String,
     name: String,
+    onClickCreditCard: () -> Unit,
 ){
     Column(
+        modifier = Modifier
+            .clickable {
+                onClickCreditCard()
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ProfileImage(

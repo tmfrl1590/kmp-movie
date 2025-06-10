@@ -16,6 +16,7 @@ import androidx.navigation.toRoute
 import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.presentation.ui.detail.MovieDetailScreenRoute
 import com.kmp.movie.presentation.ui.home.HomeScreenRoute
+import com.kmp.movie.presentation.ui.person_detail.PersonDetailScreenRoute
 import com.kmp.movie.presentation.ui.search.SearchScreenRoute
 
 const val ANIMATION_DURATION = 500
@@ -73,6 +74,14 @@ fun AppNavHost() {
                 navController = navController,
                 movieId = movieId,
             )
+        }
+        composable<Screens.PersonDetail> { backStackEntry ->
+            val personId = backStackEntry.toRoute<Screens.PersonDetail>().personId
+            PersonDetailScreenRoute(
+                navController = navController,
+                personId = personId,
+            )
+
         }
     }
 }

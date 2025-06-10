@@ -4,6 +4,7 @@ import com.kmp.movie.core.data.safeCall
 import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
 import com.kmp.movie.data.model.DetailMovieEntity
+import com.kmp.movie.data.model.DetailPersonEntity
 import com.kmp.movie.data.model.MovieCreditCastEntity
 import com.kmp.movie.data.model.MovieCreditEntity
 import com.kmp.movie.data.model.NowPlayingMovieEntity
@@ -130,6 +131,19 @@ class MovieRemoteDataSourceImpl(
             httpClient.get(
                 urlString = serverUrl("/movie/$movieId/recommendations")
             ) {
+                parameter("language", language)
+            }
+        }
+    }
+
+    override suspend fun getPersonDetail(
+        personId: Int,
+        language: String
+    ): Result<DetailPersonEntity, DataError> {
+        return safeCall<DetailPersonEntity> {
+            httpClient.get(
+                urlString = serverUrl("/person/$personId")
+            ){
                 parameter("language", language)
             }
         }

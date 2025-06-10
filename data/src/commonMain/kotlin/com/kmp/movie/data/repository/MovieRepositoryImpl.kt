@@ -5,6 +5,7 @@ import com.kmp.movie.core.domain.Result
 import com.kmp.movie.core.domain.map
 import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.domain.model.DetailMovie
+import com.kmp.movie.domain.model.DetailPerson
 import com.kmp.movie.domain.model.MovieCredit
 import com.kmp.movie.domain.model.NowPlayingMovie
 import com.kmp.movie.domain.model.PopularMovie
@@ -100,6 +101,16 @@ class MovieRepositoryImpl(
         return movieRemoteDataSource.getRecommendMovies(
             movieId = movieId,
             language = language
+        ).map { it.toDomain() }
+    }
+
+    override suspend fun getPersonDetail(
+        personId: Int,
+        language: String
+    ): Result<DetailPerson, DataError> {
+        return movieRemoteDataSource.getPersonDetail(
+            personId = personId,
+            language = language,
         ).map { it.toDomain() }
     }
 }

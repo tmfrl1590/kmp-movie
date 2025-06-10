@@ -51,7 +51,8 @@ fun MovieDetailScreenRoute(
     MovieDetailScreen(
         state = state,
         onGotoNavigateBack = { navController.popBackStack() },
-        onClickMovie = { navController.navigate(Screens.Detail(it))}
+        onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId = movieId))},
+        onClickCreditCard = { personId -> navController.navigate(Screens.PersonDetail(personId = personId))}
     )
 }
 
@@ -61,6 +62,7 @@ private fun MovieDetailScreen(
     state: MovieDetailState,
     onGotoNavigateBack: () -> Unit,
     onClickMovie: (Int) -> Unit,
+    onClickCreditCard: (Int) -> Unit,
 ){
     val scrollState = rememberScrollState()
     Scaffold(
@@ -118,7 +120,8 @@ private fun MovieDetailScreen(
             )
 
             MovieCreditArea(
-                movieCreditList = state.movieCredit.cast
+                movieCreditList = state.movieCredit.cast,
+                onClickCreditCard = onClickCreditCard,
             )
 
             Spacer(
