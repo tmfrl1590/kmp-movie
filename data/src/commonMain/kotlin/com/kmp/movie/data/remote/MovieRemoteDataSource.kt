@@ -2,6 +2,7 @@ package com.kmp.movie.data.remote
 
 import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
+import com.kmp.movie.data.model.CombinedMovieEntity
 import com.kmp.movie.data.model.DetailMovieEntity
 import com.kmp.movie.data.model.DetailPersonEntity
 import com.kmp.movie.data.model.MovieCreditCastEntity
@@ -62,4 +63,9 @@ interface MovieRemoteDataSource {
         personId: Int,
         language: String,
     ): Result<DetailPersonEntity, DataError>
+
+    suspend fun getCombinedMovie(
+        personId: Int,
+        language: String,
+    ): Result<CombinedMovieEntity, DataError>
 }

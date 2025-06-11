@@ -21,7 +21,9 @@ import androidx.navigation.NavHostController
 import com.kmp.movie.presentation.ui.person_detail.viewmodel.PersonDetailViewModel
 import org.koin.compose.viewmodel.koinViewModel
 import androidx.compose.runtime.getValue
+import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.design.topbar.CenterTopBar
+import com.kmp.movie.presentation.ui.person_detail.component.CombinedMovieListArea
 import com.kmp.movie.presentation.ui.person_detail.component.PersonImage
 import com.kmp.movie.presentation.ui.person_detail.component.PersonInfoArea
 import com.kmp.movie.presentation.ui.person_detail.state.PersonDetailState
@@ -36,11 +38,13 @@ fun PersonDetailScreenRoute(
 
     LaunchedEffect(key1 = personId) {
         viewModel.getPersonDetail(personId = personId)
+        viewModel.getCombinedMovie(personId = personId)
     }
 
     PersonDetailScreen(
         state = state,
         onGotoNavigateBack = { navController.popBackStack() },
+        onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId = movieId))},
     )
 }
 
@@ -48,6 +52,7 @@ fun PersonDetailScreenRoute(
 private fun PersonDetailScreen(
     state: PersonDetailState,
     onGotoNavigateBack: () -> Unit,
+    onClickMovie: (Int) -> Unit,
 ){
     Scaffold(
         modifier = Modifier
@@ -93,6 +98,16 @@ private fun PersonDetailScreen(
                 birthDay = state.personDetailInfo.birthday,
                 gender = state.personDetailInfo.gender,
                 knownForDepartment = state.personDetailInfo.knownForDepartment
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(32.dp)
+            )
+
+            CombinedMovieListArea(
+                combinedMovieList = state.combinedMovieModel.cast,
+                onClickMovie = onClickMovie
             )
         }
     }

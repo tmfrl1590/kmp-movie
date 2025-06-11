@@ -4,6 +4,7 @@ import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
 import com.kmp.movie.core.domain.map
 import com.kmp.movie.data.remote.MovieRemoteDataSource
+import com.kmp.movie.domain.model.CombinedMovie
 import com.kmp.movie.domain.model.DetailMovie
 import com.kmp.movie.domain.model.DetailPerson
 import com.kmp.movie.domain.model.MovieCredit
@@ -111,6 +112,16 @@ class MovieRepositoryImpl(
         return movieRemoteDataSource.getPersonDetail(
             personId = personId,
             language = language,
+        ).map { it.toDomain() }
+    }
+
+    override suspend fun getCombinedMovie(
+        personId: Int,
+        language: String
+    ): Result<CombinedMovie, DataError> {
+        return movieRemoteDataSource.getCombinedMovie(
+            personId = personId,
+            language = language
         ).map { it.toDomain() }
     }
 }

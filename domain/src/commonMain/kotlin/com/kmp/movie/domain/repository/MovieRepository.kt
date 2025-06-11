@@ -2,6 +2,7 @@ package com.kmp.movie.domain.repository
 
 import com.kmp.movie.core.domain.DataError
 import com.kmp.movie.core.domain.Result
+import com.kmp.movie.domain.model.CombinedMovie
 import com.kmp.movie.domain.model.DetailMovie
 import com.kmp.movie.domain.model.DetailPerson
 import com.kmp.movie.domain.model.MovieCredit
@@ -61,4 +62,9 @@ interface MovieRepository {
         personId: Int,
         language: String,
     ): Result<DetailPerson, DataError>
+
+    suspend fun getCombinedMovie(
+        personId: Int,
+        language: String,
+    ): Result<CombinedMovie, DataError>
 }

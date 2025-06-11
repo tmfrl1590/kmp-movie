@@ -4,6 +4,7 @@ import com.kmp.movie.core.data.HttpClientFactory
 import com.kmp.movie.data.remote.MovieRemoteDataSource
 import com.kmp.movie.data.repository.MovieRepositoryImpl
 import com.kmp.movie.domain.repository.MovieRepository
+import com.kmp.movie.domain.usecase.GetCombinedMovieUseCase
 import com.kmp.movie.domain.usecase.GetMovieCreditsUseCase
 import com.kmp.movie.domain.usecase.GetMovieDetailUseCase
 import com.kmp.movie.domain.usecase.GetNowPlayingMovieListUseCase
@@ -47,6 +48,7 @@ val useCaseModule = module {
     factory { GetSimilarMovieUseCase(get()) }
     factory { GetRecommendMovieUseCase(get()) }
     factory { GetPersonDetailUseCase(get()) }
+    factory { GetCombinedMovieUseCase(get()) }
 }
 
 val repositoryModule = module {
