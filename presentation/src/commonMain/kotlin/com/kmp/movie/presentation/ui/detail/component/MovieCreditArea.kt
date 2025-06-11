@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -41,7 +42,7 @@ fun MovieCreditArea(
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(132.dp),
+                .height(160.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             itemsIndexed(
@@ -53,6 +54,7 @@ fun MovieCreditArea(
                 MovieCreditItem(
                     profilePath = item.profilePath,
                     name = item.name,
+                    knownForDepartment = item.knownForDepartment,
                     onClickCreditCard = { onClickCreditCard(item.id) }
                 )
             }
@@ -64,10 +66,12 @@ fun MovieCreditArea(
 private fun MovieCreditItem(
     profilePath: String,
     name: String,
+    knownForDepartment: String,
     onClickCreditCard: () -> Unit,
 ){
     Column(
         modifier = Modifier
+            .fillMaxHeight()
             .clickable {
                 onClickCreditCard()
             },
@@ -82,6 +86,15 @@ private fun MovieCreditItem(
         )
         Text(
             text = name,
+            fontSize = 12.sp,
+            color = Color.White,
+        )
+        Spacer(
+            modifier = Modifier
+                .height(4.dp)
+        )
+        Text(
+            text = knownForDepartment,
             fontSize = 12.sp,
             color = Color.White,
         )
