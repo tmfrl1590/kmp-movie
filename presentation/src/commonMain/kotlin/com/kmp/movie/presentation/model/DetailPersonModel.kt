@@ -1,8 +1,8 @@
 package com.kmp.movie.presentation.model
 
 import com.kmp.movie.domain.model.DetailPerson
-import com.kmp.movie.presentation.type.GenderType
-import com.kmp.movie.presentation.type.KnownForDepartmentType
+import com.kmp.movie.core.type.GenderType
+import com.kmp.movie.core.type.KnownForDepartmentType
 
 data class DetailPersonModel(
     val birthday: String = "",

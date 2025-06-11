@@ -1,5 +1,6 @@
 package com.kmp.movie.data.model
 
+import com.kmp.movie.core.type.KnownForDepartmentType
 import com.kmp.movie.data.DataConstants.profileImageUrl
 import com.kmp.movie.data.DataMapper
 import com.kmp.movie.domain.model.MovieCredit
@@ -15,7 +16,7 @@ data class MovieCreditEntity(
     override fun toDomain(): MovieCredit {
         return MovieCredit(
             id = id,
-            cast = cast.map { it.toDomain() }
+            cast = cast.map { it.toDomain() }.filter { it.knownForDepartment == KnownForDepartmentType.ACTING.value }
         )
     }
 }

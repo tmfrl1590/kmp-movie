@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kmp.movie.presentation.type.MovieType
+import com.kmp.movie.core.type.MovieType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

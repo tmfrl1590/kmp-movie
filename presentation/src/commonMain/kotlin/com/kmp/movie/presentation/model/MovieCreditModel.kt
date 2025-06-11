@@ -2,7 +2,7 @@ package com.kmp.movie.presentation.model
 
 import com.kmp.movie.domain.model.MovieCredit
 import com.kmp.movie.domain.model.MovieCreditCast
-import com.kmp.movie.presentation.type.KnownForDepartmentType
+import com.kmp.movie.core.type.KnownForDepartmentType
 
 data class MovieCreditModel(
     val id: Int = -1,

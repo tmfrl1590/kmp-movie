@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.kmp.movie.core.presentation.Screens
-import com.kmp.movie.presentation.type.MovieType
+import com.kmp.movie.core.type.MovieType
 import com.kmp.movie.presentation.ui.home.action.HomeAction
 import com.kmp.movie.presentation.ui.home.component.ChoiceMovieTypeBottomSheet
 import com.kmp.movie.presentation.ui.home.component.HomeMovieListArea

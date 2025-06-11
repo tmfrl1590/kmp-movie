@@ -1,4 +1,4 @@
-package com.kmp.movie.presentation.type
+package com.kmp.movie.core.type
 
 enum class GenderType(
     val value: Int,
