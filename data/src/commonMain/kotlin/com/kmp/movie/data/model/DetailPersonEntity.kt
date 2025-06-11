@@ -12,7 +12,7 @@ data class DetailPersonEntity(
     @SerialName("also_known_as")
     val alsoKnownAs: List<String>,
     val biography: String,
-    val birthday: String,
+    val birthday: String?,
     @SerialName("deathday")
     val deathDay: String?,
     val gender: Int,
@@ -24,10 +24,10 @@ data class DetailPersonEntity(
     val knownForDepartment: String,
     val name: String,
     @SerialName("place_of_birth")
-    val placeOfBirth: String,
+    val placeOfBirth: String?,
     val popularity: Double,
     @SerialName("profile_path")
-    val profilePath: String,
+    val profilePath: String?,
 ): DataMapper<DetailPerson>{
     override fun toDomain(): DetailPerson {
         return DetailPerson(

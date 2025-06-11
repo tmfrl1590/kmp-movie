@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun PersonInfoArea(
     name: String,
-    birthDay: String,
+    birthDay: String?,
     gender: String,
     knownForDepartment: String,
 ){
@@ -70,13 +70,15 @@ private fun PersonName(
 
 @Composable
 private fun PersonBirthDay(
-    birthDay: String,
+    birthDay: String?,
 ){
-    Text(
-        text = "생년월일 $birthDay",
-        fontSize = 16.sp,
-        color = Color.White
-    )
+    birthDay?.let {
+        Text(
+            text = "생년월일 $it",
+            fontSize = 16.sp,
+            color = Color.White
+        )
+    }
 }
 
 @Composable

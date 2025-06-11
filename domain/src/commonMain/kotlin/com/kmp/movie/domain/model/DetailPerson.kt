@@ -4,7 +4,7 @@ data class DetailPerson(
     val adult: Boolean,
     val alsoKnownAs: List<String>,
     val biography: String,
-    val birthday: String,
+    val birthday: String?,
     val deathDay: String?,
     val gender: Int,
     val homepage: String?,
@@ -12,7 +12,7 @@ data class DetailPerson(
     val imdbId: String,
     val knownForDepartment: String,
     val name: String,
-    val placeOfBirth: String,
+    val placeOfBirth: String?,
     val popularity: Double,
     val profilePath: String,
 )

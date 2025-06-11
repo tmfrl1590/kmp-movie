@@ -5,7 +5,7 @@ import com.kmp.movie.core.type.GenderType
 import com.kmp.movie.core.type.KnownForDepartmentType
 
 data class DetailPersonModel(
-    val birthday: String = "",
+    val birthday: String? = "",
     val gender: String = "",
     val id: Int = 0,
     val name: String = "",
