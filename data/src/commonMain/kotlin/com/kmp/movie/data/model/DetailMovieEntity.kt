@@ -37,7 +37,7 @@ data class DetailMovieEntity(
     val popularity: Double,
 
     @SerialName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
 
     @SerialName("production_companies")
     val productionCompanies: List<ProductionCompanyEntity>,
