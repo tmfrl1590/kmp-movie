@@ -16,6 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.core.type.MovieType
+import com.kmp.movie.design.bottombar.BottomNavigationBar
 import com.kmp.movie.presentation.ui.home.action.HomeAction
 import com.kmp.movie.presentation.ui.home.component.ChoiceMovieTypeBottomSheet
 import com.kmp.movie.presentation.ui.home.component.HomeMovieListArea
@@ -40,6 +41,7 @@ fun HomeScreenRoute(
     }
 
     HomeScreen(
+        navController = navController,
         homeState = homeState,
         onAction = { action ->
             homeViewModel.onAction(action = action)
@@ -51,6 +53,7 @@ fun HomeScreenRoute(
 
 @Composable
 private fun HomeScreen(
+    navController: NavHostController,
     homeState: HomeState,
     onAction: (HomeAction) -> Unit,
     onGotoSearch: () -> Unit,
@@ -62,6 +65,11 @@ private fun HomeScreen(
             //.windowInsetsPadding(WindowInsets.safeDrawing)
         ,
         containerColor = Color.Black,
+        bottomBar = {
+            BottomNavigationBar(
+                navController = navController
+            )
+        }
     ) {
         Column(
             modifier = Modifier

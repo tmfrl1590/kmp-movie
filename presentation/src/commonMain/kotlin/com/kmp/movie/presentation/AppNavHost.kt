@@ -18,6 +18,7 @@ import com.kmp.movie.presentation.ui.detail.MovieDetailScreenRoute
 import com.kmp.movie.presentation.ui.home.HomeScreenRoute
 import com.kmp.movie.presentation.ui.person_detail.PersonDetailScreenRoute
 import com.kmp.movie.presentation.ui.search.SearchScreenRoute
+import com.kmp.movie.presentation.ui.setting.SettingScreenRoute
 
 const val ANIMATION_DURATION = 500
 
@@ -81,7 +82,11 @@ fun AppNavHost() {
                 navController = navController,
                 personId = personId,
             )
-
+        }
+        composable<Screens.Setting> {
+            SettingScreenRoute(
+                navController = navController,
+            )
         }
     }
 }

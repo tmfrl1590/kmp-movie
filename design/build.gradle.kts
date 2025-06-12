@@ -28,6 +28,8 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(projects.core)
+
                 implementation(libs.kotlin.stdlib)
 
                 implementation(compose.runtime)
@@ -39,6 +41,8 @@ kotlin {
                 implementation(libs.bundles.coil)
 
                 implementation(libs.material.icons.core)
+
+                implementation(libs.jetbrains.compose.navigation)
             }
         }
     }

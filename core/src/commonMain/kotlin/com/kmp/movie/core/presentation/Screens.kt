@@ -15,4 +15,6 @@ sealed interface Screens {
     data class PersonDetail(
         val personId: Int
     ): Screens
+    @Serializable
+    data object Setting: Screens
 }
