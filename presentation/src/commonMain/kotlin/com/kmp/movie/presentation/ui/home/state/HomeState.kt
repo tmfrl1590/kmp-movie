@@ -12,4 +12,6 @@ data class HomeState(
 
     // 서버로부터 받아온 영화 리스트 (영화 타입에 맞게)
     val homeMovieList: List<HomeMovieModel> = emptyList(),
+
+    val isLoading: Boolean = false,
 )

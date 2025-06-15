@@ -12,42 +12,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kmp.movie.design.HomeMovieListItem
+import com.kmp.movie.design.loading.LoadingBar
 import com.kmp.movie.presentation.model.HomeMovieModel
 
 @Composable
 fun HomeMovieListArea(
     modifier: Modifier,
+    isLoading: Boolean,
     homeMovieList: List<HomeMovieModel>,
     onClickMovie: (Int) -> Unit,
 ){
     val gridState = rememberLazyGridState()
 
-    LazyVerticalGrid(
-        modifier = modifier,
-        state = gridState,
-        columns = GridCells.Fixed(2),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        itemsIndexed(
-            items = homeMovieList,
-            key = { index, _ ->
-                index
+    if(isLoading){
+        LoadingBar()
+    } else {
+        LazyVerticalGrid(
+            modifier = modifier,
+            state = gridState,
+            columns = GridCells.Fixed(2),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            itemsIndexed(
+                items = homeMovieList,
+                key = { index, _ ->
+                    index
+                }
+            ){_, item ->
+                HomeMovieListItem(
+                    modifier = Modifier
+                        .clickable {
+                            onClickMovie(item.id)
+                        },
+                    asyncImageModifier = Modifier
+                        .height(240.dp)
+                        .padding(bottom = 8.dp),
+                    urlString = item.posterPath,
+                    title = item.title,
+                    voteAverage = item.voteAverage,
+                    voteCount = item.voteCount
+                )
             }
-        ){_, item ->
-            HomeMovieListItem(
-                modifier = Modifier
-                    .clickable {
-                        onClickMovie(item.id)
-                    },
-                asyncImageModifier = Modifier
-                    .height(240.dp)
-                    .padding(bottom = 8.dp),
-                urlString = item.posterPath,
-                title = item.title,
-                voteAverage = item.voteAverage,
-                voteCount = item.voteCount
-            )
         }
     }
 }

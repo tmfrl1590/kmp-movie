@@ -18,7 +18,7 @@ import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.core.type.MovieType
 import com.kmp.movie.design.bottombar.BottomNavigationBar
 import com.kmp.movie.presentation.ui.home.action.HomeAction
-import com.kmp.movie.presentation.ui.home.component.ChoiceMovieTypeBottomSheet
+import com.kmp.movie.presentation.ui.home.component.HomeBottomSheet
 import com.kmp.movie.presentation.ui.home.component.HomeMovieListArea
 import com.kmp.movie.presentation.ui.home.component.SelectMovieAndSearchArea
 import com.kmp.movie.presentation.ui.home.state.HomeState
@@ -39,6 +39,12 @@ fun HomeScreenRoute(
             MovieType.POPULAR -> homeViewModel.getPopularMovieList()
         }
     }
+
+    HomeBottomSheet(
+        isVisible = homeState.isShowBottomSheet,
+        onBottomSheetClose = { homeViewModel.onAction(HomeAction.OnShowBottomSheet(false)) },
+        onSelectMovie = { selectedMovieType -> homeViewModel.onAction(HomeAction.OnSelectMovieType(selectedMovieType)) }
+    )
 
     HomeScreen(
         navController = navController,
@@ -90,33 +96,10 @@ private fun HomeScreen(
             HomeMovieListArea(
                 modifier = Modifier
                     .weight(1f),
+                isLoading = homeState.isLoading,
                 homeMovieList = homeState.homeMovieList,
                 onClickMovie = onClickMovie
             )
         }
-    }
-
-    HomeBottomSheet(
-        isVisible = homeState.isShowBottomSheet,
-        onBottomSheetClose = {
-            onAction(HomeAction.OnShowBottomSheet(false))
-        },
-        onSelectMovie = { selectedMovieType ->
-            onAction(HomeAction.OnSelectMovieType(selectedMovieType))
-        }
-    )
-}
-
-@Composable
-private fun HomeBottomSheet(
-    isVisible: Boolean,
-    onBottomSheetClose: () -> Unit,
-    onSelectMovie: (MovieType) -> Unit
-) {
-    if (isVisible) {
-        ChoiceMovieTypeBottomSheet(
-            onBottomSheetClose = onBottomSheetClose,
-            onSelectMovie = onSelectMovie
-        )
     }
 }

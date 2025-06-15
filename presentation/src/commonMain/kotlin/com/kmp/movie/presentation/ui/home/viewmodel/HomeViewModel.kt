@@ -27,6 +27,7 @@ class HomeViewModel(
     val state = _state.asStateFlow()
 
     fun getNowPlayingMovieList(){
+        _state.update { it.copy(isLoading = true) }
         viewModelScope.launch(Dispatchers.IO) {
             getNowPlayingMovieListUseCase(
                 language = "ko",
@@ -34,12 +35,13 @@ class HomeViewModel(
                 page = 1
             ).onSuccess { result ->
                 val data = result.toPresentation()
-                _state.update { it.copy(homeMovieList = data.results.map { it.toHomeModel()}) }
+                _state.update { it.copy(isLoading = false, homeMovieList = data.results.map { it.toHomeModel()}) }
             }
         }
     }
 
     fun getUpComingMovieList(){
+        _state.update { it.copy(isLoading = true) }
         viewModelScope.launch(Dispatchers.IO) {
             getUpComingMovieListUseCase(
                 language = "ko",
@@ -47,12 +49,13 @@ class HomeViewModel(
                 page = 1
             ).onSuccess { result ->
                 val data = result.toPresentation()
-                _state.update { it.copy(homeMovieList = data.results.map { it.toHomeModel()}) }
+                _state.update { it.copy(isLoading = false, homeMovieList = data.results.map { it.toHomeModel()}) }
             }
         }
     }
 
     fun getPopularMovieList(){
+        _state.update { it.copy(isLoading = true) }
         viewModelScope.launch(Dispatchers.IO) {
             getPopularMovieListUseCase(
                 language = "ko",
@@ -60,7 +63,7 @@ class HomeViewModel(
                 page = 1
             ).onSuccess { result ->
                 val data = result.toPresentation()
-                _state.update { it.copy(homeMovieList = data.results.map { it.toHomeModel()}) }
+                _state.update { it.copy(isLoading = false, homeMovieList = data.results.map { it.toHomeModel()}) }
             }
         }
     }
