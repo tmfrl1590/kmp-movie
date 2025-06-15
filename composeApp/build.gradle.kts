@@ -39,6 +39,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.core)
+            implementation(projects.design)
             implementation(projects.presentation)
             implementation(projects.domain)
             implementation(projects.data)

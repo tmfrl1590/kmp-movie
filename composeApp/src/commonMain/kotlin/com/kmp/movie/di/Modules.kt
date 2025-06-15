@@ -18,6 +18,7 @@ import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
 import com.kmp.movie.presentation.ui.person_detail.viewmodel.PersonDetailViewModel
 import com.kmp.movie.presentation.ui.search.viewmodel.SearchViewModel
+import com.kmp.movie.presentation.ui.setting.viewmodel.SettingViewModel
 import com.kmp.movie.remote.network.MovieRemoteDataSourceImpl
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -36,6 +37,7 @@ val viewModelModule = module {
     viewModelOf(::SearchViewModel)
     viewModelOf(::MovieDetailViewModel)
     viewModelOf(::PersonDetailViewModel)
+    viewModelOf(::SettingViewModel)
 }
 
 val useCaseModule = module {
