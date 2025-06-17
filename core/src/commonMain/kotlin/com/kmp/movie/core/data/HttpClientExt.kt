@@ -38,9 +38,11 @@ suspend inline fun <reified T,> responseToResult(
         in 200..299 -> {
             try {
                 Result.Success(response.body<T>())
-            } catch (e: JsonConvertException){ // 데이터는 성공적으로 수신했지만 Json 파싱중 에러
+            } catch (e: JsonConvertException){
+                e.printStackTrace()
                 Result.Error(DataError.Remote.SERIALIZATION)
             } catch (e: Exception){
+                e.printStackTrace()
                 Result.Error(DataError.Remote.UNKNOWN)
             }
         }
