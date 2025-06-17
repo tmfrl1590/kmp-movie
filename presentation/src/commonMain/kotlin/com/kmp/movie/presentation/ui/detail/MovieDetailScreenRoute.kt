@@ -14,6 +14,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.kmp.movie.core.presentation.Screens
+import com.kmp.movie.design.error.toMessage
 import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.detail.component.MovieCreditArea
 import com.kmp.movie.presentation.ui.detail.component.MovieImage
@@ -31,15 +34,23 @@ import com.kmp.movie.presentation.ui.detail.component.RecommendMovieListArea
 import com.kmp.movie.presentation.ui.detail.component.SimilarMovieListArea
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
 import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun MovieDetailScreenRoute(
     navController: NavHostController,
+    snackBarHostState: SnackbarHostState,
     movieId: Int,
     movieDetailMovieModel: MovieDetailViewModel = koinViewModel()
 ){
     val state by movieDetailMovieModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+        movieDetailMovieModel.error.collectLatest { error ->
+            snackBarHostState.showSnackbar(message = error.toMessage())
+        }
+    }
 
     LaunchedEffect( key1 = movieId) {
         movieDetailMovieModel.getMovieDetail(movieId = movieId)
@@ -49,6 +60,7 @@ fun MovieDetailScreenRoute(
     }
 
     MovieDetailScreen(
+        snackBarHostState = snackBarHostState,
         state = state,
         onGotoNavigateBack = { navController.popBackStack() },
         onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId = movieId))},
@@ -59,6 +71,7 @@ fun MovieDetailScreenRoute(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MovieDetailScreen(
+    snackBarHostState: SnackbarHostState,
     state: MovieDetailState,
     onGotoNavigateBack: () -> Unit,
     onClickMovie: (Int) -> Unit,
@@ -66,6 +79,7 @@ private fun MovieDetailScreen(
 ){
     val scrollState = rememberScrollState()
     Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         modifier = Modifier
             .fillMaxSize()
         ,

@@ -73,6 +73,7 @@ fun AppNavHost() {
             val movieId = backStackEntry.toRoute<Screens.Detail>().movieId
             MovieDetailScreenRoute(
                 navController = navController,
+                snackBarHostState = snackBarHostState,
                 movieId = movieId,
             )
         }
