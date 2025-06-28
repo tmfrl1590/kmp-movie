@@ -29,6 +29,13 @@ kotlin {
 
             implementation(libs.kotlin.stdlib)
             // Add KMP dependencies here
+
+            // DataStore
+            api(libs.datastore.preferences)
+            api(libs.datastore)
+
+            // coroutine
+            implementation(libs.kotlinx.coroutines)
         }
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.kmp.movie.local.ContextUtils
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
 
         window.statusBarColor = Color.Black.toArgb()
         WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
-
+        ContextUtils.setContext(context = this)
         setContent {
             App()
         }

@@ -1,8 +1,11 @@
 package com.kmp.movie.di
 
 import com.kmp.movie.core.data.HttpClientFactory
+import com.kmp.movie.data.local.LocalDataSource
 import com.kmp.movie.data.remote.MovieRemoteDataSource
+import com.kmp.movie.data.repository.LocalRepositoryImpl
 import com.kmp.movie.data.repository.MovieRepositoryImpl
+import com.kmp.movie.domain.repository.LocalRepository
 import com.kmp.movie.domain.repository.MovieRepository
 import com.kmp.movie.domain.usecase.GetCombinedMovieUseCase
 import com.kmp.movie.domain.usecase.GetMovieCreditsUseCase
@@ -14,6 +17,9 @@ import com.kmp.movie.domain.usecase.GetRecommendMovieUseCase
 import com.kmp.movie.domain.usecase.GetSearchedMovieListUseCase
 import com.kmp.movie.domain.usecase.GetSimilarMovieUseCase
 import com.kmp.movie.domain.usecase.GetUpComingMovieListUseCase
+import com.kmp.movie.domain.usecase.local.GetIsLightThemeUseCase
+import com.kmp.movie.domain.usecase.local.SaveIsLightThemeUseCase
+import com.kmp.movie.local.LocalDataSourceImpl
 import com.kmp.movie.presentation.ui.detail.viewmodel.MovieDetailViewModel
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
 import com.kmp.movie.presentation.ui.person_detail.viewmodel.PersonDetailViewModel
@@ -51,12 +57,17 @@ val useCaseModule = module {
     factory { GetRecommendMovieUseCase(get()) }
     factory { GetPersonDetailUseCase(get()) }
     factory { GetCombinedMovieUseCase(get()) }
+
+    factory { SaveIsLightThemeUseCase(get()) }
+    factory { GetIsLightThemeUseCase(get()) }
 }
 
 val repositoryModule = module {
     singleOf(::MovieRepositoryImpl).bind<MovieRepository>()
+    singleOf(::LocalRepositoryImpl).bind<LocalRepository>()
 }
 
 val remoteSourceModule = module {
     singleOf(::MovieRemoteDataSourceImpl).bind<MovieRemoteDataSource>()
+    singleOf(::LocalDataSourceImpl).bind<LocalDataSource>()
 }

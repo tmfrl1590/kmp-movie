@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SettingItem(
     title: String,
+    isLightTheme: Boolean,
     onClick: () -> Unit,
 ){
     Row(
@@ -30,7 +31,7 @@ fun SettingItem(
         )
 
         Text(
-            text = "라이트테마",
+            text = if(isLightTheme) "라이트테마" else "다크테마",
             color = Color.White,
             modifier = Modifier
                 .clickable { onClick() }

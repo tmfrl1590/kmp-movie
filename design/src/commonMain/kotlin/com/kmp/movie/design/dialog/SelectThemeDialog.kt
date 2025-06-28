@@ -27,15 +27,12 @@ import androidx.compose.ui.window.DialogProperties
 
 @Composable
 fun SelectThemeDialog(
+    isLightTheme: Boolean,
     onConfirm: () -> Unit,
-){
-    val options = listOf("라이트테마", "다크테마")
-    var selectedOption by remember { mutableStateOf(options[0]) }
-
+    onSelectTheme: (Boolean) -> Unit,
+) {
     Dialog(
-        onDismissRequest = {
-            onConfirm()
-        },
+        onDismissRequest = onConfirm,
         properties = DialogProperties(
             dismissOnBackPress = true,
             dismissOnClickOutside = true,
@@ -54,34 +51,47 @@ fun SelectThemeDialog(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .padding(horizontal = 4.dp)
-                    .padding(top = 4.dp)
+                    .padding(horizontal = 4.dp, vertical = 8.dp)
             ) {
-                DialogTitle(
-                    dialogTitle = "테마를 선택해주세요"
+                DialogTitle(dialogTitle = "테마를 선택해주세요")
+
+                ThemeOptionRow(
+                    label = "라이트테마",
+                    isSelected = isLightTheme,
+                    onSelect = { onSelectTheme(true) }
                 )
 
-                options.forEach { text ->
-                    Row (
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(80.dp)
-                            .clickable { selectedOption = text }
-                        ,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        RadioButton(
-                            selected = (text == selectedOption),
-                            onClick = { selectedOption = text }
-                        )
-                        Text(
-                            text = text,
-                            modifier = Modifier
-                                .padding(start = 8.dp)
-                        )
-                    }
-                }
+                ThemeOptionRow(
+                    label = "다크테마",
+                    isSelected = !isLightTheme,
+                    onSelect = { onSelectTheme(false) }
+                )
             }
         }
+    }
+}
+
+
+@Composable
+private fun ThemeOptionRow(
+    label: String,
+    isSelected: Boolean,
+    onSelect: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp)
+            .clickable { onSelect() },
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        RadioButton(
+            selected = isSelected,
+            onClick = onSelect
+        )
+        Text(
+            text = label,
+            modifier = Modifier.padding(start = 8.dp)
+        )
     }
 }
