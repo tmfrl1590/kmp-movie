@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.runtime.getValue
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,9 +14,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -26,36 +24,32 @@ import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.setting.action.SettingAction
 import com.kmp.movie.presentation.ui.setting.component.SettingDialogArea
 import com.kmp.movie.presentation.ui.setting.component.SettingItem
-import com.kmp.movie.presentation.ui.setting.state.SettingState
 import com.kmp.movie.presentation.ui.setting.viewmodel.SettingViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SettingScreenRoute(
     navController: NavHostController,
+    isLightTheme: Boolean,
     settingViewModel: SettingViewModel = koinViewModel(),
     onSelectTheme: (Boolean) -> Unit,
 ){
     val settingState by settingViewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(key1 = Unit) {
-        settingViewModel.getIsLightTheme()
-    }
-
     SettingDialogArea(
         isShowSelectThemeDialog = settingState.isShowSelectThemeDialog,
-        isLightTheme = settingState.isLightTheme,
+        isLightTheme = isLightTheme,
         onConfirm = {
             settingViewModel.onAction(SettingAction.OnShowSelectThemeDialog(isShow = false))
         },
         onSelectTheme = {
             onSelectTheme(it)
-            settingViewModel.onAction(SettingAction.OnSelectTheme(it))
+            settingViewModel.onAction(SettingAction.OnShowSelectThemeDialog(isShow = false))
         }
     )
     SettingScreen(
         navController = navController,
-        settingState = settingState,
+        isLightTheme = isLightTheme,
         onGotoNavigateBack = { navController.popBackStack() },
         onAction = { action ->
             settingViewModel.onAction(action = action)
@@ -66,7 +60,7 @@ fun SettingScreenRoute(
 @Composable
 private fun SettingScreen(
     navController: NavHostController,
-    settingState: SettingState,
+    isLightTheme: Boolean,
     onGotoNavigateBack: () -> Unit,
     onAction: (SettingAction) -> Unit,
 ){
@@ -97,7 +91,6 @@ private fun SettingScreen(
                 }
             )
         },
-        //containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             BottomNavigationBar(
                 navController = navController
@@ -116,7 +109,7 @@ private fun SettingScreen(
             )
             SettingItem(
                 title = "테마설정",
-                isLightTheme = settingState.isLightTheme,
+                isLightTheme = isLightTheme,
                 onClick = {
                     onAction(SettingAction.OnShowSelectThemeDialog(isShow = true))
                 }

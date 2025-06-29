@@ -6,10 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
@@ -27,12 +24,11 @@ const val ANIMATION_DURATION = 500
 
 @Composable
 fun AppNavHost(
+    isLightTheme: Boolean,
     onSelectTheme: (Boolean) -> Unit,
 ) {
     val navController = rememberNavController()
     val snackBarHostState = remember { SnackbarHostState() }
-
-
 
     NavHost(
         navController = navController,
@@ -94,6 +90,7 @@ fun AppNavHost(
         composable<Screens.Setting> {
             SettingScreenRoute(
                 navController = navController,
+                isLightTheme = isLightTheme,
                 onSelectTheme = onSelectTheme
             )
         }
