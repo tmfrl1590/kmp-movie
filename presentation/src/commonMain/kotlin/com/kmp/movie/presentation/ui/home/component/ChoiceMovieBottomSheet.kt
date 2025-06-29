@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
@@ -41,7 +42,7 @@ fun ChoiceMovieTypeBottomSheet(
         onDismissRequest = {
             onBottomSheetClose()
         },
-        containerColor = White,
+        containerColor = MaterialTheme.colorScheme.background,
         dragHandle = null,
     ) {
         Column(
@@ -87,6 +88,7 @@ private fun BottomSheetTitleArea(
             text = "영화타입을 선택해주세요",
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
+            color = MaterialTheme.colorScheme.primary
         )
 
         Icon(
@@ -96,7 +98,8 @@ private fun BottomSheetTitleArea(
                 .align(Alignment.CenterEnd)
                 .padding(end = 16.dp)
                 .size(24.dp)
-                .clickable { onSheetClose() }
+                .clickable { onSheetClose() },
+            tint = MaterialTheme.colorScheme.primary
         )
     }
 }
@@ -118,6 +121,7 @@ private fun MovieTypeItem(
         Text(
             text = movieTypeText,
             fontSize = 16.sp,
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }

@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -93,7 +94,7 @@ private fun MovieTitle(
         text = title,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
-        color = Color.White
+        color = MaterialTheme.colorScheme.primary
     )
 }
 
@@ -142,6 +143,7 @@ private fun GenreCard(
         ){
             Text(
                 text = genreText,
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }
@@ -158,7 +160,7 @@ private fun MovieReleaseDateAndRunTime(
         Text(
             text = releaseDate,
             fontSize = 16.sp,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier
                 .alignByBaseline()
         )
@@ -169,7 +171,7 @@ private fun MovieReleaseDateAndRunTime(
         Text(
             text = runTime,
             fontSize = 16.sp,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier
                 .alignByBaseline()
         )
@@ -198,7 +200,7 @@ private fun MovieVoteAverage(
         Text(
             text = "($voteCount)",
             fontSize = 16.sp,
-            color = Color.White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }
@@ -210,7 +212,7 @@ fun MovieOverView(
     Text(
         text = overview,
         fontSize = 16.sp,
-        color = Color.White,
+        color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentSize()

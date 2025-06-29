@@ -3,6 +3,7 @@ package com.kmp.movie.design.dialog
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ fun DialogTitle(
         Text(
             text = dialogTitle,
             fontSize = 18.sp,
+            color = MaterialTheme.colorScheme.primary
         )
     }
 

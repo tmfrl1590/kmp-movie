@@ -2,6 +2,7 @@ package com.kmp.movie.design.topbar
 
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -15,7 +16,7 @@ fun CenterTopBar(
     CenterAlignedTopAppBar(
         title = title,
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Black
+            containerColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = navigationIcon,
     )

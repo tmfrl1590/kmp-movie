@@ -72,7 +72,7 @@ fun AppBottomNavigationBar(
     content: @Composable (RowScope.() -> Unit)
 ) {
     Surface(
-        color = Color.Black,
+        color = MaterialTheme.colorScheme.background,
         modifier = modifier
             .fillMaxWidth()
             .height(68.dp)
@@ -121,7 +121,7 @@ fun RowScope.AppBottomNavigationBarItem(
             contentDescription = "",
             modifier = Modifier
                 .size(28.dp),
-            tint = Color.White
+            tint = MaterialTheme.colorScheme.primary
         )
     }
 }

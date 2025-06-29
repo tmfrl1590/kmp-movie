@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -45,7 +46,7 @@ fun SelectMovieAndSearchArea(
                 text = selectedMovieTypeText,
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
-                color = Color.White
+                color = MaterialTheme.colorScheme.primary
             )
             IconButton(
                 onClick = {
@@ -55,7 +56,7 @@ fun SelectMovieAndSearchArea(
                 Icon(
                     imageVector = Icons.Filled.KeyboardArrowDown,
                     contentDescription = "select_movie",
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .size(32.dp)
                 )
@@ -69,7 +70,7 @@ fun SelectMovieAndSearchArea(
             Icon(
                 imageVector = Icons.Filled.Search,
                 contentDescription = "search",
-                tint = Color.White,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .size(40.dp)
             )

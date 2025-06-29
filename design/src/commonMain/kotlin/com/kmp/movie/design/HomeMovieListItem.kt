@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,7 +45,7 @@ fun HomeMovieListItem(
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
-                color = Color.White
+                color = MaterialTheme.colorScheme.primary
             ),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
@@ -66,13 +67,13 @@ fun HomeMovieListItem(
             Text(
                 text = voteAverage.toString(),
                 fontSize = 16.sp,
-                color = Color.White
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = "($voteCount)",
                 fontSize = 12.sp,
-                color = Color.White
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }

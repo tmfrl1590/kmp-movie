@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -48,7 +49,8 @@ fun SearchInputArea(
                     imageVector = Icons.Default.Search,
                     contentDescription = "search",
                     modifier = Modifier
-                        .size(24.dp)
+                        .size(24.dp),
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         },

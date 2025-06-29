@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,7 +34,7 @@ fun MovieCreditArea(
         Text(
             text = "출연진",
             fontSize = 20.sp,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.primary,
         )
         Spacer(
             modifier = Modifier
@@ -87,7 +88,7 @@ private fun MovieCreditItem(
         Text(
             text = name,
             fontSize = 12.sp,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.primary,
         )
         Spacer(
             modifier = Modifier
@@ -96,7 +97,7 @@ private fun MovieCreditItem(
         Text(
             text = knownForDepartment,
             fontSize = 12.sp,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }

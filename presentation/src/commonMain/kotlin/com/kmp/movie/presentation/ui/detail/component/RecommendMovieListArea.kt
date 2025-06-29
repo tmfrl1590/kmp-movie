@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,7 +32,7 @@ fun RecommendMovieListArea(
         Text(
             text = "추천 영화",
             fontSize = 20.sp,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.primary,
         )
         Spacer(
             modifier = Modifier

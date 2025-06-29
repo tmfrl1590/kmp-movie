@@ -3,6 +3,7 @@ package com.kmp.movie.design
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -39,7 +40,10 @@ fun InputField(
         value = inputText,
         onValueChange = onValueChange,
         placeholder = {
-            Text(text = placeHolder)
+            Text(
+                text = placeHolder,
+                color = MaterialTheme.colorScheme.primary
+            )
         },
         singleLine = singleLine,
         maxLines = maxLines,
@@ -51,6 +55,8 @@ fun InputField(
             unfocusedContainerColor = Color.LightGray,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
+            focusedTextColor = MaterialTheme.colorScheme.primary,
+            unfocusedTextColor = MaterialTheme.colorScheme.primary,
         ),
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -64,7 +65,7 @@ private fun PersonName(
         text = name,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
-        color = Color.White
+        color = MaterialTheme.colorScheme.primary
     )
 }
 
@@ -76,7 +77,7 @@ private fun PersonBirthDay(
         Text(
             text = "생년월일 $it",
             fontSize = 16.sp,
-            color = Color.White
+            color = MaterialTheme.colorScheme.primary
         )
     }
 }
@@ -88,7 +89,7 @@ private fun PersonGender(
     Text(
         text = "성별 $gender",
         fontSize = 16.sp,
-        color = Color.White
+        color = MaterialTheme.colorScheme.primary
     )
 }
 
@@ -99,6 +100,6 @@ private fun KnownForDepartment(
     Text(
         text = "직업 $knownForDepartment",
         fontSize = 16.sp,
-        color = Color.White
+        color = MaterialTheme.colorScheme.primary
     )
 }

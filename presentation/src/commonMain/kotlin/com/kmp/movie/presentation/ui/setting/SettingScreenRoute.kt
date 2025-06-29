@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,6 +34,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun SettingScreenRoute(
     navController: NavHostController,
     settingViewModel: SettingViewModel = koinViewModel(),
+    onSelectTheme: (Boolean) -> Unit,
 ){
     val settingState by settingViewModel.state.collectAsStateWithLifecycle()
 
@@ -47,6 +49,7 @@ fun SettingScreenRoute(
             settingViewModel.onAction(SettingAction.OnShowSelectThemeDialog(isShow = false))
         },
         onSelectTheme = {
+            onSelectTheme(it)
             settingViewModel.onAction(SettingAction.OnSelectTheme(it))
         }
     )
@@ -56,7 +59,7 @@ fun SettingScreenRoute(
         onGotoNavigateBack = { navController.popBackStack() },
         onAction = { action ->
             settingViewModel.onAction(action = action)
-        }
+        },
     )
 }
 
@@ -76,7 +79,7 @@ private fun SettingScreen(
                 title = {
                     Text(
                         text = "설정",
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.primary
                     )
                 },
                 navigationIcon = {
@@ -88,13 +91,13 @@ private fun SettingScreen(
                             contentDescription = "back",
                             modifier = Modifier
                                 .size(32.dp),
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
             )
         },
-        containerColor = Color.Black,
+        //containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             BottomNavigationBar(
                 navController = navController
