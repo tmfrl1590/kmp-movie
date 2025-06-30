@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.design.StarColor
 
 @Composable
 fun MovieInfoArea(
@@ -129,8 +130,7 @@ private fun GenreCard(
             .height(32.dp)
         ,
         colors = CardDefaults.cardColors(
-            containerColor = Color.DarkGray,
-            contentColor = Color.White
+            containerColor = MaterialTheme.colorScheme.onBackground,
         ),
         shape = RoundedCornerShape(999.dp)
     ) {
@@ -189,13 +189,13 @@ private fun MovieVoteAverage(
         Text(
             text = voteAverage,
             fontSize = 16.sp,
-            color = Color.Yellow,
+            color = StarColor,
         )
         Icon(
             modifier = Modifier.size(16.dp),
             imageVector = Icons.Filled.Star,
             contentDescription = "",
-            tint = Color.Yellow
+            tint = StarColor,
         )
         Text(
             text = "($voteCount)",

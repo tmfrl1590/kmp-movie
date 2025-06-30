@@ -61,7 +61,7 @@ fun HomeMovieListItem(
                 modifier = Modifier.size(16.dp),
                 imageVector = Icons.Filled.Star,
                 contentDescription = "",
-                tint = Color.Yellow
+                tint = StarColor
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
