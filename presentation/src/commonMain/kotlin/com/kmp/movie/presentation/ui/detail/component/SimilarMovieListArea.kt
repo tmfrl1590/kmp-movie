@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.design.HomeMovieListItem
 import com.kmp.movie.presentation.model.SimilarMovieDataModel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SimilarMovieListArea(
@@ -30,7 +32,7 @@ fun SimilarMovieListArea(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = "이 영화와 비슷한 영화",
+            text = stringResource(Resources.String.similarMovie),
             fontSize = 20.sp,
             color = MaterialTheme.colorScheme.primary,
         )

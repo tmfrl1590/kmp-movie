@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="now_playing">현재 상영중</string>
+    <string name="upcoming">개봉 예정</string>
+    <string name="popular">인기 작품</string>
+
+    <string name="setting">설정</string>
+    <string name="setting_theme">테마설정</string>
+    <string name="light_theme">라이트테마</string>
+    <string name="dark_theme">다크테마</string>
+
+    <string name="select_movie_type">영화 타입을 선택해주세요</string>
+
+    <string name="input_movie_title">영화제목을 입력해주세요</string>
+    <string name="no_movie">영화정보가 없습니다</string>
+
+    <string name="movie_cast">출연진</string>
+    <string name="similar_movie">이 영화와 비슷한 영화</string>
+    <string name="recommend_movie">추천 영화</string>
+
+    <string name="birthday">생년월일</string>
+    <string name="gender">성별</string>
+    <string name="known_for_department">직업</string>
+    <string name="combined_movie">이 배우가 출연한 영화</string>
+</resources>

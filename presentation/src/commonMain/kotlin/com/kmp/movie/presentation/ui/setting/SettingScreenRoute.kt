@@ -19,12 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.kmp.movie.core.Resources
 import com.kmp.movie.design.bottombar.BottomNavigationBar
 import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.setting.action.SettingAction
 import com.kmp.movie.presentation.ui.setting.component.SettingDialogArea
 import com.kmp.movie.presentation.ui.setting.component.SettingItem
 import com.kmp.movie.presentation.ui.setting.viewmodel.SettingViewModel
+import kmpmovie.presentation.generated.resources.Res
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -72,7 +75,7 @@ private fun SettingScreen(
             CenterTopBar(
                 title = {
                     Text(
-                        text = "설정",
+                        text = stringResource(Resources.String.setting),
                         color = MaterialTheme.colorScheme.primary
                     )
                 },
@@ -108,7 +111,7 @@ private fun SettingScreen(
                     .height(12.dp)
             )
             SettingItem(
-                title = "테마설정",
+                title = stringResource(Resources.String.setting_theme),
                 isLightTheme = isLightTheme,
                 onClick = {
                     onAction(SettingAction.OnShowSelectThemeDialog(isShow = true))

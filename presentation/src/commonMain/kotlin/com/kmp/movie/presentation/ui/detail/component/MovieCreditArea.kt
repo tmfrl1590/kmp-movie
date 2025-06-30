@@ -19,8 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.design.AsyncImage
 import com.kmp.movie.presentation.model.MovieCreditCastModel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun MovieCreditArea(
@@ -32,7 +34,7 @@ fun MovieCreditArea(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = "출연진",
+            text = stringResource(Resources.String.movieCast),
             fontSize = 20.sp,
             color = MaterialTheme.colorScheme.primary,
         )

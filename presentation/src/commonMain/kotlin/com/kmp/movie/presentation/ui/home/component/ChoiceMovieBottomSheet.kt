@@ -24,7 +24,9 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.core.type.MovieType
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,17 +58,17 @@ fun ChoiceMovieTypeBottomSheet(
             )
 
             MovieTypeItem(
-                movieTypeText = MovieType.NOW_PLAYING.displayName,
+                movieTypeText = stringResource( MovieType.NOW_PLAYING.displayName),
                 onClick = { onSelectMovie(MovieType.NOW_PLAYING) },
             )
 
             MovieTypeItem(
-                movieTypeText = MovieType.UPCOMING.displayName,
+                movieTypeText = stringResource(MovieType.UPCOMING.displayName),
                 onClick = { onSelectMovie(MovieType.UPCOMING) },
             )
 
             MovieTypeItem(
-                movieTypeText = MovieType.POPULAR.displayName,
+                movieTypeText = stringResource(MovieType.POPULAR.displayName),
                 onClick = { onSelectMovie(MovieType.POPULAR) },
             )
         }
@@ -85,7 +87,7 @@ private fun BottomSheetTitleArea(
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = "영화타입을 선택해주세요",
+            text = stringResource(Resources.String.selectMovieType),
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary

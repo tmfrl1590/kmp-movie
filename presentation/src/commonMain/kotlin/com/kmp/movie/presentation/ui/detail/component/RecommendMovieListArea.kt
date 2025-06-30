@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.design.HomeMovieListItem
 import com.kmp.movie.presentation.model.RecommendMovieDataModel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun RecommendMovieListArea(
@@ -30,7 +32,7 @@ fun RecommendMovieListArea(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = "추천 영화",
+            text = stringResource(Resources.String.recommendMovie),
             fontSize = 20.sp,
             color = MaterialTheme.colorScheme.primary,
         )

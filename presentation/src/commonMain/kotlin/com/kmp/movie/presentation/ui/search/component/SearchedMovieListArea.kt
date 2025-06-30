@@ -16,7 +16,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.presentation.model.SearchedMovieDataModel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SearchedMovieListArea(
@@ -33,7 +35,7 @@ fun SearchedMovieListArea(
             contentAlignment = Alignment.Center
         ){
             Text(
-                text = "영화정보가 없습니다",
+                text = stringResource(Resources.String.noMovie),
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 20.sp
             )

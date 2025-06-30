@@ -12,6 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun PersonInfoArea(
@@ -75,7 +77,7 @@ private fun PersonBirthDay(
 ){
     birthDay?.let {
         Text(
-            text = "생년월일 $it",
+            text = "${stringResource(Resources.String.birthDay)} $it",
             fontSize = 16.sp,
             color = MaterialTheme.colorScheme.primary
         )
@@ -87,7 +89,7 @@ private fun PersonGender(
     gender: String,
 ){
     Text(
-        text = "성별 $gender",
+        text = "${stringResource(Resources.String.gender)} $gender",
         fontSize = 16.sp,
         color = MaterialTheme.colorScheme.primary
     )
@@ -98,7 +100,7 @@ private fun KnownForDepartment(
     knownForDepartment: String,
 ){
     Text(
-        text = "직업 $knownForDepartment",
+        text = "${stringResource(Resources.String.knownForDepartment)} $knownForDepartment",
         fontSize = 16.sp,
         color = MaterialTheme.colorScheme.primary
     )

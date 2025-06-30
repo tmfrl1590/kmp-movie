@@ -17,7 +17,9 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.design.InputField
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SearchInputArea(
@@ -36,7 +38,7 @@ fun SearchInputArea(
             .focusRequester(focusRequester)
         ,
         inputText = inputText,
-        placeHolder = "영화제목을 입력해주세요",
+        placeHolder = stringResource(Resources.String.inputMovieTitle),
         onValueChange = onValueChange,
         leadingIcon = {
             IconButton(

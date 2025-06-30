@@ -16,8 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.core.Resources
 import com.kmp.movie.design.HomeMovieListItem
 import com.kmp.movie.presentation.model.CombinedMovieItemModel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CombinedMovieListArea(
@@ -29,7 +31,7 @@ fun CombinedMovieListArea(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = "이 배우가 출연한 영화",
+            text = stringResource(Resources.String.combinedMovie),
             fontSize = 20.sp,
             color = MaterialTheme.colorScheme.primary
         )

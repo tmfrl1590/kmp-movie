@@ -1,9 +1,12 @@
 package com.kmp.movie.core.type
 
+import com.kmp.movie.core.Resources
+import org.jetbrains.compose.resources.StringResource
+
 enum class MovieType(
-    val displayName: String,
+    val displayName: StringResource,
 ) {
-    NOW_PLAYING("현재 상영 중"),
-    UPCOMING("개봉 예정"),
-    POPULAR("인기 작품")
+    NOW_PLAYING(Resources.String.now_playing),
+    UPCOMING(Resources.String.upcoming),
+    POPULAR(Resources.String.popular)
 }

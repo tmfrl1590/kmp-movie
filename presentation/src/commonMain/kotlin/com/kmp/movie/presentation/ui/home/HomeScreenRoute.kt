@@ -24,6 +24,7 @@ import com.kmp.movie.presentation.ui.home.component.HomeMovieListArea
 import com.kmp.movie.presentation.ui.home.component.SelectMovieAndSearchArea
 import com.kmp.movie.presentation.ui.home.state.HomeState
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -85,7 +86,7 @@ private fun HomeScreen(
                 .padding(horizontal = 16.dp),
         ) {
             SelectMovieAndSearchArea(
-                selectedMovieTypeText = homeState.selectedMovieType.displayName,
+                selectedMovieTypeText = stringResource(homeState.selectedMovieType.displayName) ,
                 onShowBottomSheet = {
                     onAction(HomeAction.OnShowBottomSheet(it))
                 },

@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.kmp.movie.core.Resources
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SettingItem(
@@ -32,7 +34,7 @@ fun SettingItem(
         )
 
         Text(
-            text = if(isLightTheme) "라이트테마" else "다크테마",
+            text = if(isLightTheme) stringResource(Resources.String.light_theme) else stringResource(Resources.String.dark_theme),
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier
                 .clickable { onClick() }
