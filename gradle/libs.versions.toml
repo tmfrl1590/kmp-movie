@@ -28,6 +28,8 @@ foundationLayoutAndroid = "1.7.8"
 
 datastore = "1.1.1"
 
+compose-runTime = "1.5.14"
+
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -73,6 +75,10 @@ androidx-foundation-layout-android = { group = "androidx.compose.foundation", na
 # DataStore
 datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+# Compose RunTime
+compose-runTime = { module = "androidx.compose.runtime:runtime", version.ref = "compose-runTime"}
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

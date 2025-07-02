@@ -36,6 +36,8 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
+
+            implementation(libs.compose.runTime)
         }
         commonMain.dependencies {
             implementation(projects.core)
@@ -79,8 +81,8 @@ android {
         applicationId = "com.kmp.movie"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.0"
     }
     packaging {
         resources {

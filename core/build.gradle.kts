@@ -27,6 +27,9 @@ kotlin {
     }
 
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.compose.runTime)
+        }
         commonMain.dependencies {
             implementation(libs.kotlin.stdlib)
 
