@@ -85,6 +85,7 @@ fun AppNavHost(
             val personId = backStackEntry.toRoute<Screens.PersonDetail>().personId
             PersonDetailScreenRoute(
                 navController = navController,
+                snackBarHostState = snackBarHostState,
                 personId = personId,
             )
         }

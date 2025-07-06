@@ -4,6 +4,7 @@ import com.kmp.movie.presentation.model.CombinedMovieModel
 import com.kmp.movie.presentation.model.DetailPersonModel
 
 data class PersonDetailState(
+    val isLoading: Boolean = false,
     val personDetailInfo: DetailPersonModel = DetailPersonModel(),
     val combinedMovieModel: CombinedMovieModel = CombinedMovieModel()
 )
