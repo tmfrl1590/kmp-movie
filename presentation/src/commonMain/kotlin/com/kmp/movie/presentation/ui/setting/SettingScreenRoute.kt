@@ -5,14 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -21,12 +14,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.kmp.movie.core.Resources
 import com.kmp.movie.design.bottombar.BottomNavigationBar
-import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.setting.action.SettingAction
 import com.kmp.movie.presentation.ui.setting.component.SettingDialogArea
 import com.kmp.movie.presentation.ui.setting.component.SettingItem
+import com.kmp.movie.presentation.ui.setting.component.SettingTopBar
 import com.kmp.movie.presentation.ui.setting.viewmodel.SettingViewModel
-import kmpmovie.presentation.generated.resources.Res
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -72,26 +64,8 @@ private fun SettingScreen(
             .fillMaxSize()
         ,
         topBar = {
-            CenterTopBar(
-                title = {
-                    Text(
-                        text = stringResource(Resources.String.setting),
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                },
-                navigationIcon = {
-                    IconButton(
-                        onClick = onGotoNavigateBack,
-                    ){
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowLeft,
-                            contentDescription = "back",
-                            modifier = Modifier
-                                .size(32.dp),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                }
+            SettingTopBar(
+                onGotoNavigateBack = onGotoNavigateBack,
             )
         },
         bottomBar = {

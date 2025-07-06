@@ -5,13 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -26,8 +21,8 @@ import androidx.navigation.NavHostController
 import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.design.error.toMessage
 import com.kmp.movie.design.loading.LoadingBar
-import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.person_detail.component.CombinedMovieListArea
+import com.kmp.movie.presentation.ui.person_detail.component.PersonDetailTopBar
 import com.kmp.movie.presentation.ui.person_detail.component.PersonImage
 import com.kmp.movie.presentation.ui.person_detail.component.PersonInfoArea
 import com.kmp.movie.presentation.ui.person_detail.state.PersonDetailState
@@ -76,21 +71,8 @@ private fun PersonDetailScreen(
             .fillMaxSize()
         ,
         topBar = {
-            CenterTopBar(
-                title = {},
-                navigationIcon = {
-                    IconButton(
-                        onClick = onGotoNavigateBack,
-                    ){
-                        Icon(
-                            imageVector = Icons.Default.KeyboardArrowLeft,
-                            contentDescription = "back",
-                            modifier = Modifier
-                                .size(32.dp),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                }
+            PersonDetailTopBar(
+                onGotoNavigateBack = onGotoNavigateBack,
             )
         },
         containerColor = MaterialTheme.colorScheme.background,
