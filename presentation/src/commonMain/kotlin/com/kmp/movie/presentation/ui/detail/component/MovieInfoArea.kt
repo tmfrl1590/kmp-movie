@@ -23,7 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,6 +30,7 @@ import com.kmp.movie.design.StarColor
 
 @Composable
 fun MovieInfoArea(
+    imageUrl: String,
     title: String,
     releaseDate: String,
     runTime: String,
@@ -43,6 +43,15 @@ fun MovieInfoArea(
         modifier = Modifier
             .padding(horizontal = 20.dp)
     ){
+        MovieImage(
+            imageUrl = imageUrl
+        )
+
+        Spacer(
+            modifier = Modifier
+                .height(20.dp)
+        )
+
         MovieTitle(
             title = title,
         )
@@ -84,7 +93,6 @@ fun MovieInfoArea(
             overview = overview,
         )
     }
-
 }
 
 @Composable

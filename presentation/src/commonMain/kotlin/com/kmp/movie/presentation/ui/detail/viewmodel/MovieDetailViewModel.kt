@@ -13,6 +13,7 @@ import com.kmp.movie.presentation.model.toPresentation
 import com.kmp.movie.presentation.ui.detail.state.MovieDetailState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -25,7 +26,7 @@ class MovieDetailViewModel(
     private val getMovieCreditsUseCase: GetMovieCreditsUseCase,
     private val getSimilarMovieUseCase: GetSimilarMovieUseCase,
     private val getRecommendMovieUseCase: GetRecommendMovieUseCase,
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(MovieDetailState())
     val state = _state.asStateFlow()
@@ -33,52 +34,50 @@ class MovieDetailViewModel(
     private val _error = MutableSharedFlow<DataError>()
     val error = _error.asSharedFlow()
 
-    fun getMovieDetail(movieId: Int) {
+    fun loadMovieAllData(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            getMovieDetailUseCase(
-                movieId = movieId,
-                language = "ko",
-            ).onSuccess { result ->
-                val data = result.toPresentation()
-                _state.update { it.copy(movieDeDetailInfo = data) }
-            }.onError { error ->
-                _error.emit(error)
-            }
-        }
-    }
+            _state.update { it.copy(isLoading = true) }
 
-    fun getMovieCredit(movieId: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            getMovieCreditsUseCase(
-                movieId = movieId,
-                language = "ko",
-            ).onSuccess { result ->
-                val data = result.toPresentation()
-                _state.update { it.copy(movieCredit = data) }
-            }
-        }
-    }
+            try {
+                val detailDeferred = async { getMovieDetailUseCase(movieId, "ko") }
+                val creditDeferred = async { getMovieCreditsUseCase(movieId, "ko") }
+                val similarDeferred = async { getSimilarMovieUseCase(movieId, "ko") }
+                val recommendDeferred = async { getRecommendMovieUseCase(movieId, "ko") }
 
-    fun getSimilarMovie(movieId: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            getSimilarMovieUseCase(
-                movieId = movieId,
-                language = "ko",
-            ).onSuccess { result ->
-                val data = result.toPresentation()
-                _state.update { it.copy(similarMovie = data) }
-            }
-        }
-    }
+                val detailResult = detailDeferred.await()
+                val creditResult = creditDeferred.await()
+                val similarResult = similarDeferred.await()
+                val recommendResult = recommendDeferred.await()
 
-    fun getRecommendMovie(movieId: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            getRecommendMovieUseCase(
-                movieId = movieId,
-                language = "ko",
-            ).onSuccess { result ->
-                val data = result.toPresentation()
-                _state.update { it.copy(recommendMovie = data) }
+                detailResult
+                    .onSuccess { result ->
+                        _state.update { it.copy(movieDeDetailInfo = result.toPresentation()) }
+                    }.onError { error ->
+                        _error.emit(error)
+                    }
+
+                creditResult
+                    .onSuccess { result ->
+                        _state.update { it.copy(movieCredit = result.toPresentation()) }
+                    }.onError { error ->
+                        _error.emit(error)
+                    }
+
+                similarResult
+                    .onSuccess { result ->
+                        _state.update { it.copy(similarMovie = result.toPresentation()) }
+                    }.onError { error ->
+                        _error.emit(error)
+                    }
+
+                recommendResult
+                    .onSuccess { result ->
+                        _state.update { it.copy(recommendMovie = result.toPresentation()) }
+                    }.onError { error ->
+                        _error.emit(error)
+                    }
+            } finally {
+                _state.update { it.copy(isLoading = false) }
             }
         }
     }

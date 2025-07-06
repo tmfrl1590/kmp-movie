@@ -26,9 +26,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.design.error.toMessage
+import com.kmp.movie.design.loading.LoadingBar
 import com.kmp.movie.design.topbar.CenterTopBar
 import com.kmp.movie.presentation.ui.detail.component.MovieCreditArea
-import com.kmp.movie.presentation.ui.detail.component.MovieImage
 import com.kmp.movie.presentation.ui.detail.component.MovieInfoArea
 import com.kmp.movie.presentation.ui.detail.component.RecommendMovieListArea
 import com.kmp.movie.presentation.ui.detail.component.SimilarMovieListArea
@@ -53,10 +53,7 @@ fun MovieDetailScreenRoute(
     }
 
     LaunchedEffect( key1 = movieId) {
-        movieDetailMovieModel.getMovieDetail(movieId = movieId)
-        movieDetailMovieModel.getMovieCredit(movieId = movieId)
-        movieDetailMovieModel.getSimilarMovie(movieId = movieId)
-        movieDetailMovieModel.getRecommendMovie(movieId = movieId)
+        movieDetailMovieModel.loadMovieAllData(movieId = movieId)
     }
 
     MovieDetailScreen(
@@ -103,65 +100,62 @@ private fun MovieDetailScreen(
         },
         containerColor = MaterialTheme.colorScheme.background,
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-                .verticalScroll(scrollState)
-            ,
-        ) {
-            MovieImage(
-                imageUrl = state.movieDeDetailInfo.backdropPath
-            )
-
-            Spacer(
+        if(state.isLoading){
+            LoadingBar()
+        } else {
+            Column(
                 modifier = Modifier
-                    .height(20.dp)
-            )
-            MovieInfoArea(
-                title = state.movieDeDetailInfo.title,
-                releaseDate = state.movieDeDetailInfo.releaseDate,
-                runTime = state.movieDeDetailInfo.runtime,
-                voteAverage = state.movieDeDetailInfo.voteAverage.toString(),
-                voteCount = state.movieDeDetailInfo.voteCount,
-                genreList = state.movieDeDetailInfo.genres,
-                overview = state.movieDeDetailInfo.overview,
-            )
+                    .fillMaxSize()
+                    .padding(it)
+                    .verticalScroll(scrollState)
+                ,
+            ) {
+                MovieInfoArea(
+                    imageUrl = state.movieDeDetailInfo.backdropPath,
+                    title = state.movieDeDetailInfo.title,
+                    releaseDate = state.movieDeDetailInfo.releaseDate,
+                    runTime = state.movieDeDetailInfo.runtime,
+                    voteAverage = state.movieDeDetailInfo.voteAverage.toString(),
+                    voteCount = state.movieDeDetailInfo.voteCount,
+                    genreList = state.movieDeDetailInfo.genres,
+                    overview = state.movieDeDetailInfo.overview,
+                )
 
-            Spacer(
-                modifier = Modifier
-                    .height(32.dp)
-            )
+                Spacer(
+                    modifier = Modifier
+                        .height(32.dp)
+                )
 
-            MovieCreditArea(
-                movieCreditList = state.movieCredit.cast,
-                onClickCreditCard = onClickCreditCard,
-            )
+                MovieCreditArea(
+                    movieCreditList = state.movieCredit.cast,
+                    onClickCreditCard = onClickCreditCard,
+                )
 
-            Spacer(
-                modifier = Modifier
-                    .height(32.dp)
-            )
+                Spacer(
+                    modifier = Modifier
+                        .height(32.dp)
+                )
 
-            SimilarMovieListArea(
-                similarMovieList = state.similarMovie.results,
-                onClickMovie = onClickMovie,
-            )
+                SimilarMovieListArea(
+                    similarMovieList = state.similarMovie.results,
+                    onClickMovie = onClickMovie,
+                )
 
-            Spacer(
-                modifier = Modifier
-                    .height(32.dp)
-            )
+                Spacer(
+                    modifier = Modifier
+                        .height(32.dp)
+                )
 
-            RecommendMovieListArea(
-                recommendMovieList = state.recommendMovie.results,
-                onClickMovie = onClickMovie,
-            )
+                RecommendMovieListArea(
+                    recommendMovieList = state.recommendMovie.results,
+                    onClickMovie = onClickMovie,
+                )
 
-            Spacer(
-                modifier = Modifier
-                    .height(32.dp)
-            )
+                Spacer(
+                    modifier = Modifier
+                        .height(32.dp)
+                )
+            }
         }
     }
 }
