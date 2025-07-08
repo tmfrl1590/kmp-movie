@@ -9,6 +9,8 @@
     <string name="light_theme">라이트테마</string>
     <string name="dark_theme">다크테마</string>
 
+    <string name="app_version">앱버전</string>
+
     <string name="select_movie_type">영화 타입을 선택해주세요</string>
 
     <string name="input_movie_title">영화제목을 입력해주세요</string>

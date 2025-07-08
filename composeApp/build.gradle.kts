@@ -38,6 +38,8 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
 
             implementation(libs.compose.runTime)
+
+            implementation("io.insert-koin:koin-android:4.0.0")
         }
         commonMain.dependencies {
             implementation(projects.core)
@@ -61,6 +63,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+
         }
 
         iosMain.dependencies {

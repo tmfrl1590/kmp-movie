@@ -15,6 +15,7 @@ import androidx.navigation.NavHostController
 import com.kmp.movie.core.Resources
 import com.kmp.movie.design.bottombar.BottomNavigationBar
 import com.kmp.movie.presentation.ui.setting.action.SettingAction
+import com.kmp.movie.presentation.ui.setting.component.AppVersionArea
 import com.kmp.movie.presentation.ui.setting.component.SettingDialogArea
 import com.kmp.movie.presentation.ui.setting.component.SettingItem
 import com.kmp.movie.presentation.ui.setting.component.SettingTopBar
@@ -91,6 +92,8 @@ private fun SettingScreen(
                     onAction(SettingAction.OnShowSelectThemeDialog(isShow = true))
                 }
             )
+
+            AppVersionArea()
         }
     }
 }

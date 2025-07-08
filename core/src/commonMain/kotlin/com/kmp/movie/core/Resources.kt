@@ -1,6 +1,7 @@
 package com.kmp.movie.core
 
 import kmpmovie.core.generated.resources.Res
+import kmpmovie.core.generated.resources.app_version
 import kmpmovie.core.generated.resources.birthday
 import kmpmovie.core.generated.resources.combined_movie
 import kmpmovie.core.generated.resources.dark_theme
@@ -31,6 +32,8 @@ object Resources {
         val setting_theme = Res.string.setting_theme
         val light_theme = Res.string.light_theme
         val dark_theme = Res.string.dark_theme
+
+        val app_version = Res.string.app_version
 
         val inputMovieTitle = Res.string.input_movie_title
         val noMovie = Res.string.no_movie
