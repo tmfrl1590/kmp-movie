@@ -19,7 +19,7 @@ data class DetailPersonEntity(
     val homepage: String?,
     val id: Int,
     @SerialName("imdb_id")
-    val imdbId: String,
+    val imdbId: String?,
     @SerialName("known_for_department")
     val knownForDepartment: String,
     val name: String,
