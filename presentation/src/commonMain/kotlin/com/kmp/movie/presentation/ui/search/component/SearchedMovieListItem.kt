@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kmp.movie.design.AsyncImage
 import com.kmp.movie.design.StarColor
+import com.kmp.movie.design.error.ErrorLoadingMovie
 
 @Composable
 fun SearchedMovieListItem(
@@ -45,7 +46,9 @@ fun SearchedMovieListItem(
             modifier = Modifier
                 .height(240.dp)
                 .padding(bottom = 8.dp),
-            errorImage = {}
+            errorImage = {
+                ErrorLoadingMovie()
+            }
         )
 
         Text(

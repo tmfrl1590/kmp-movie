@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kmp.movie.design.error.ErrorLoadingMovie
 
 @Composable
 fun HomeMovieListItem(
@@ -36,7 +37,9 @@ fun HomeMovieListItem(
         AsyncImage(
             urlString = urlString,
             modifier = asyncImageModifier,
-            errorImage = {}
+            errorImage = {
+                ErrorLoadingMovie()
+            }
         )
 
         Text(

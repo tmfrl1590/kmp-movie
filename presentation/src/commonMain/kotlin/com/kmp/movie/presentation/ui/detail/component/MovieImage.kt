@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kmp.movie.design.AsyncImage
+import com.kmp.movie.design.error.ErrorLoadingMovie
 
 @Composable
 fun MovieImage(
@@ -17,6 +18,8 @@ fun MovieImage(
             .height(280.dp),
         urlString = imageUrl,
         radius = 0.dp,
-        errorImage = {}
+        errorImage = {
+            ErrorLoadingMovie()
+        }
     )
 }

@@ -12,7 +12,7 @@ import com.kmp.movie.core.Resources
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun ErrorLoadingPerson(){
+fun ErrorLoadingMovie(){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -20,7 +20,7 @@ fun ErrorLoadingPerson(){
         contentAlignment = Alignment.Center
     ){
         Image(
-            painter = painterResource(Resources.Image.default_person),
+            painter = painterResource(Resources.Image.default_movie),
             contentDescription = "default image",
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary)
         )
