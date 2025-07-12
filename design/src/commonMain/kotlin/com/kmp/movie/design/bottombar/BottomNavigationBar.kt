@@ -21,19 +21,16 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.kmp.movie.core.presentation.Screens
 
 val bottomDestinations: List<Screens> = listOf(
@@ -45,6 +42,9 @@ val bottomDestinations: List<Screens> = listOf(
 fun BottomNavigationBar(
     navController: NavHostController,
 ){
+    val backStackEntry = navController.currentBackStackEntryAsState()
+    val currentScreen = backStackEntry.value.fromBottomRoute()
+    
     AppBottomNavigationBar(
         show = navController.shouldShowBottomBar,
         modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
@@ -53,11 +53,13 @@ fun BottomNavigationBar(
             AppBottomNavigationBarItem(
                 icon = bottomIconSetting(screenItem),
                 onTabClick = {
-                    navController.navigate(screenItem) {
-                        popUpTo(navController.graph.findStartDestination().route!!) {
-                            saveState = true
+                    if(currentScreen != screenItem){
+                        navController.navigate(screenItem) {
+                            popUpTo(navController.graph.findStartDestination().route!!) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
                         }
-                        launchSingleTop = true
                     }
                 },
             )
@@ -106,7 +108,9 @@ fun AppBottomNavigationBar(
 fun RowScope.AppBottomNavigationBarItem(
     onTabClick: () -> Unit,
     icon: ImageVector,
+    isSelected: Boolean = false,
 ) {
+
     Column(
         modifier = Modifier
             .weight(1f)
@@ -121,7 +125,7 @@ fun RowScope.AppBottomNavigationBarItem(
             contentDescription = "",
             modifier = Modifier
                 .size(28.dp),
-            tint = MaterialTheme.colorScheme.primary
+            tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         )
     }
 }
