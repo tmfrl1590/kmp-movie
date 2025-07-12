@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kmp.movie.design.AsyncImage
+import com.kmp.movie.design.StarColor
 
 @Composable
 fun SearchedMovieListItem(
@@ -68,7 +69,7 @@ fun SearchedMovieListItem(
                 modifier = Modifier.size(16.dp),
                 imageVector = Icons.Filled.Star,
                 contentDescription = "",
-                tint = Color.Yellow
+                tint = StarColor
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
