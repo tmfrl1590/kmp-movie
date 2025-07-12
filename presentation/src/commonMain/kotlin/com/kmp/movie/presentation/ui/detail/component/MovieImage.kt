@@ -17,5 +17,6 @@ fun MovieImage(
             .height(280.dp),
         urlString = imageUrl,
         radius = 0.dp,
+        errorImage = {}
     )
 }

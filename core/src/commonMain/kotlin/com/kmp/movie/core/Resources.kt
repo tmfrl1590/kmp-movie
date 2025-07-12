@@ -6,6 +6,7 @@ import kmpmovie.core.generated.resources.birthday
 import kmpmovie.core.generated.resources.combined_movie
 import kmpmovie.core.generated.resources.dark_theme
 import kmpmovie.core.generated.resources.gender
+import kmpmovie.core.generated.resources.image_default_person
 import kmpmovie.core.generated.resources.input_movie_title
 import kmpmovie.core.generated.resources.known_for_department
 import kmpmovie.core.generated.resources.light_theme
@@ -46,5 +47,9 @@ object Resources {
         val gender = Res.string.gender
         val knownForDepartment = Res.string.known_for_department
         val combinedMovie = Res.string.combined_movie
+    }
+
+    object Image {
+        val person = Res.drawable.image_default_person
     }
 }

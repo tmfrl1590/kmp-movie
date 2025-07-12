@@ -16,11 +16,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kmp.movie.core.Resources
 import com.kmp.movie.design.AsyncImage
+import com.kmp.movie.design.error.ErrorLoadingPerson
 import com.kmp.movie.presentation.model.MovieCreditCastModel
 import org.jetbrains.compose.resources.stringResource
 
@@ -112,6 +112,9 @@ private fun ProfileImage(
         modifier = Modifier
             .size(100.dp),
         urlString = profilePath,
-        radius = 28.dp
+        radius = 28.dp,
+        errorImage = {
+            ErrorLoadingPerson()
+        }
     )
 }
