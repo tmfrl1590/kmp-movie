@@ -165,7 +165,7 @@ data class BelongsToCollectionEntity(
     @SerialName("poster_path")
     val posterPath: String?,
     @SerialName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
 ): DataMapper<BelongsToCollection>{
     override fun toDomain(): BelongsToCollection {
         return BelongsToCollection(
