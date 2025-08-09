@@ -9,19 +9,17 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.kmp.movie.core.presentation.Screens
+import com.kmp.movie.presentation.PresentationConstant.ANIMATION_DURATION
 import com.kmp.movie.presentation.ui.detail.MovieDetailScreenRoute
-import com.kmp.movie.presentation.ui.home.HomeScreenRoute
 import com.kmp.movie.presentation.ui.person_detail.PersonDetailScreenRoute
 import com.kmp.movie.presentation.ui.search.SearchScreenRoute
-import com.kmp.movie.presentation.ui.setting.SettingScreenRoute
+import com.kmp.movie.presentation.ui.start.StartScreenRoute
 
-const val ANIMATION_DURATION = 500
 
 @Composable
 fun AppNavHost(
@@ -33,10 +31,11 @@ fun AppNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = Screens.Home,
+        startDestination = Screens.Start,
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+            .background(MaterialTheme.colorScheme.background)
+        ,
         enterTransition = {
             slideIntoContainer(
                 AnimatedContentTransitionScope.SlideDirection.Left,
@@ -63,9 +62,13 @@ fun AppNavHost(
             )
         },
     ){
-        composable<Screens.Home> {
-            HomeScreenRoute(
-                navController = navController
+        composable<Screens.Start>{
+            StartScreenRoute(
+                isLightTheme = isLightTheme,
+                onSelectTheme = onSelectTheme,
+                onGotoNavigateBack = {navController.popBackStack()},
+                onGotoSearch = { navController.navigate(Screens.Search)},
+                onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId) ) }
             )
         }
         composable<Screens.Search> {
@@ -87,13 +90,6 @@ fun AppNavHost(
                 navController = navController,
                 snackBarHostState = snackBarHostState,
                 personId = personId,
-            )
-        }
-        composable<Screens.Setting> {
-            SettingScreenRoute(
-                navController = navController,
-                isLightTheme = isLightTheme,
-                onSelectTheme = onSelectTheme
             )
         }
     }

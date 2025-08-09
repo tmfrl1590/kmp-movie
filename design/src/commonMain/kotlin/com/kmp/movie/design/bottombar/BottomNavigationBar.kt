@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -28,40 +25,25 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import com.kmp.movie.core.presentation.Screens
-
-val bottomDestinations: List<Screens> = listOf(
-    Screens.Home,
-    Screens.Setting,
-)
+import com.kmp.movie.core.presentation.BottomBarScreen
+import com.kmp.movie.core.presentation.bottomDestinations
 
 @Composable
 fun BottomNavigationBar(
+    currentScreen: BottomBarScreen,
     navController: NavHostController,
+    onTabClick: (BottomBarScreen) -> Unit,
 ){
-    val backStackEntry = navController.currentBackStackEntryAsState()
-    val currentScreen = backStackEntry.value.fromBottomRoute()
-    
     AppBottomNavigationBar(
         show = navController.shouldShowBottomBar,
         modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
     ) {
-        bottomDestinations.forEach { screenItem ->
+        bottomDestinations.forEach { bottomBarScreen ->
             AppBottomNavigationBarItem(
-                icon = bottomIconSetting(screenItem),
-                onTabClick = {
-                    if(currentScreen != screenItem){
-                        navController.navigate(screenItem) {
-                            popUpTo(navController.graph.findStartDestination().route!!) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                        }
-                    }
-                },
+                icon = bottomBarScreen.icon,
+                onTabClick = { onTabClick(bottomBarScreen) },
+                isSelected = currentScreen == bottomBarScreen,
             )
         }
     }
@@ -108,7 +90,7 @@ fun AppBottomNavigationBar(
 fun RowScope.AppBottomNavigationBarItem(
     onTabClick: () -> Unit,
     icon: ImageVector,
-    isSelected: Boolean = false,
+    isSelected: Boolean,
 ) {
 
     Column(
@@ -130,31 +112,20 @@ fun RowScope.AppBottomNavigationBarItem(
     }
 }
 
-private val NavController.shouldShowBottomBar
-    get() = when (this.currentBackStackEntry.fromBottomRoute()) {
-        Screens.Home,
-        Screens.Setting,
-            -> true
-
-        else -> false
-    }
-
-@Composable
-private fun bottomIconSetting(screens: Screens): ImageVector {
-    return when(screens){
-        Screens.Home -> Icons.Filled.Home
-        Screens.Setting -> Icons.Filled.Settings
-        else -> { Icons.Filled.Home }
-    }
-}
-
-fun NavBackStackEntry?.fromBottomRoute(): Screens? {
+fun NavBackStackEntry?.fromBottomRoute(): BottomBarScreen {
     this?.destination?.route?.substringBefore("?")?.substringBefore("/")?.substringAfterLast(".")?.let {
         return when (it) {
-            Screens.Home::class.simpleName -> Screens.Home
-            Screens.Setting::class.simpleName -> Screens.Setting
-            else -> null
+            BottomBarScreen.Home::class.simpleName -> BottomBarScreen.Home
+            BottomBarScreen.Setting::class.simpleName -> BottomBarScreen.Setting
+            else -> BottomBarScreen.Home
         }
     }
-    return null
+    return BottomBarScreen.Home
 }
+
+private val NavController.shouldShowBottomBar
+    get() = when (this.currentBackStackEntry.fromBottomRoute()) {
+        BottomBarScreen.Home,
+        BottomBarScreen.Setting,
+            -> true
+    }
