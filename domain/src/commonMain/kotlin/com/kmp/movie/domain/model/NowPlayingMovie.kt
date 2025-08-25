@@ -7,7 +7,7 @@ data class NowPlayingMovie(
 data class NowPlayingMovieData(
     val adult: Boolean,
 
-    val backdropPath: String,
+    val backdropPath: String?,
 
     val genreIds: List<Int>,
 
