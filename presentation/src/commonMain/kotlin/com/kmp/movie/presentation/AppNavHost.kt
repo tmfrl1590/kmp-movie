@@ -25,6 +25,7 @@ import com.kmp.movie.presentation.ui.start.StartScreenRoute
 fun AppNavHost(
     isLightTheme: Boolean,
     onSelectTheme: (Boolean) -> Unit,
+    onFinishApp: () -> Unit,
 ) {
     val navController = rememberNavController()
     val snackBarHostState = remember { SnackbarHostState() }
@@ -67,7 +68,8 @@ fun AppNavHost(
                 onSelectTheme = onSelectTheme,
                 onGotoNavigateBack = {navController.popBackStack()},
                 onGotoSearch = { navController.navigate(Screens.Search)},
-                onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId) ) }
+                onClickMovie = { movieId -> navController.navigate(Screens.Detail(movieId) ) },
+                onFinishApp = onFinishApp
             )
         }
         composable<Screens.Search> {

@@ -21,7 +21,9 @@ class MainActivity : ComponentActivity() {
         WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
         ContextUtils.setContext(context = this)
         setContent {
-            App()
+            App(
+                onFinishApp = { finish() }
+            )
         }
     }
 }

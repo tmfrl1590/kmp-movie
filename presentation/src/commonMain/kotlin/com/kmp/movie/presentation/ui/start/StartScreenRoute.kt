@@ -45,6 +45,7 @@ fun StartScreenRoute(
     homeViewModel: HomeViewModel = koinViewModel(),
     settingViewModel: SettingViewModel = koinViewModel(),
     onClickMovie: (Int) -> Unit,
+    onFinishApp: () -> Unit,
 ) {
     val navController = rememberNavController()
 
@@ -96,7 +97,8 @@ fun StartScreenRoute(
             homeViewModel = homeViewModel,
             settingViewModel = settingViewModel,
             homeState = homeState,
-            onClickMovie = onClickMovie
+            onClickMovie = onClickMovie,
+            onFinishApp = onFinishApp
         )
     }
 }
@@ -111,6 +113,7 @@ fun BottomBarGraph(
     settingViewModel: SettingViewModel,
     homeState: HomeState,
     onClickMovie: (Int) -> Unit,
+    onFinishApp: () -> Unit,
 ){
     NavHost(
         modifier = Modifier
@@ -151,7 +154,8 @@ fun BottomBarGraph(
                 HomeScreenRoute(
                     homeViewModel = homeViewModel,
                     homeState = homeState,
-                    onClickMovie = onClickMovie
+                    onClickMovie = onClickMovie,
+                    onFinishApp = onFinishApp
                 )
             }
             composable<Screens.Setting> {

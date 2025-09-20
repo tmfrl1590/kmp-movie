@@ -9,24 +9,43 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.kmp.movie.core.Resources
+import com.kmp.movie.presentation.BackHandlerUtil
+import com.kmp.movie.presentation.ShowToastMessage
 import com.kmp.movie.presentation.ui.home.action.HomeAction
 import com.kmp.movie.presentation.ui.home.component.HomeBottomSheet
 import com.kmp.movie.presentation.ui.home.component.HomeMovieListArea
 import com.kmp.movie.presentation.ui.home.state.HomeState
 import com.kmp.movie.presentation.ui.home.viewmodel.HomeViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
+
+private const val EXIT_CONFIRMATION_MESSAGE = "한 번 더 누르면 종료됩니다"
 
 @Composable
 fun HomeScreenRoute(
     homeViewModel: HomeViewModel,
     homeState: HomeState,
     onClickMovie: (Int) -> Unit,
+    onFinishApp: () -> Unit,
 ){
     val lazyGridState = rememberLazyGridState()
+
+    var backPressedOnce by remember { mutableStateOf(false) }
+    var showToastMessage by remember { mutableStateOf<String?>(null) }
+    val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         homeViewModel.scrollToTop.collectLatest {
@@ -50,6 +69,28 @@ fun HomeScreenRoute(
                     homeViewModel.loadMovieList()
                 }
             }
+    }
+
+    // 토스트 메시지가 있을 때 표시
+    showToastMessage?.let { message ->
+        ShowToastMessage(message = message)
+        LaunchedEffect(message) {
+            showToastMessage = null
+        }
+    }
+
+    BackHandlerUtil(enabled = true) {
+        if (backPressedOnce) { 
+            onFinishApp()
+        } else {
+            backPressedOnce = true
+            showToastMessage = EXIT_CONFIRMATION_MESSAGE
+
+            coroutineScope.launch {
+                delay(2000)
+                backPressedOnce = false
+            }
+        }
     }
 
     HomeScreen(

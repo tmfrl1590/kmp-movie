@@ -13,7 +13,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 @Preview
 fun App(
-    viewModel: AppViewModel = koinViewModel()
+    viewModel: AppViewModel = koinViewModel(),
+    onFinishApp: () -> Unit = {},
 ) {
     val appState by viewModel.isLightTheme.collectAsStateWithLifecycle()
 
@@ -26,7 +27,8 @@ fun App(
             isLightTheme = appState.isLightTheme,
             onSelectTheme = { newTheme ->
                 viewModel.saveIsLightTheme(newTheme)
-            }
+            },
+            onFinishApp = onFinishApp
         )
     }
 }
