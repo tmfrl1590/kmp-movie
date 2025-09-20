@@ -38,29 +38,28 @@ fun AppNavHost(
         ,
         enterTransition = {
             slideIntoContainer(
-                AnimatedContentTransitionScope.SlideDirection.Left,
-                animationSpec = tween(ANIMATION_DURATION)
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(durationMillis = ANIMATION_DURATION)
             )
         },
         exitTransition = {
             slideOutOfContainer(
-                AnimatedContentTransitionScope.SlideDirection.Down,
-                animationSpec = tween(ANIMATION_DURATION)
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(durationMillis = ANIMATION_DURATION)
             )
         },
         popEnterTransition = {
             slideIntoContainer(
-                AnimatedContentTransitionScope.SlideDirection.Up,
-                animationSpec = tween(ANIMATION_DURATION)
+                towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                animationSpec = tween(durationMillis = ANIMATION_DURATION)
             )
-
         },
         popExitTransition = {
             slideOutOfContainer(
-                AnimatedContentTransitionScope.SlideDirection.Up,
-                animationSpec = tween(ANIMATION_DURATION)
+                towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                animationSpec = tween(durationMillis = ANIMATION_DURATION)
             )
-        },
+        }
     ){
         composable<Screens.Start>{
             StartScreenRoute(
