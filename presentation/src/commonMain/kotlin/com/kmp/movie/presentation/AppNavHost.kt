@@ -15,10 +15,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.kmp.movie.core.presentation.Screens
 import com.kmp.movie.presentation.PresentationConstant.ANIMATION_DURATION
-import com.kmp.movie.presentation.ui.detail.MovieDetailScreenRoute
-import com.kmp.movie.presentation.ui.person_detail.PersonDetailScreenRoute
-import com.kmp.movie.presentation.ui.search.SearchScreenRoute
-import com.kmp.movie.presentation.ui.start.StartScreenRoute
+import com.kmp.movie.presentation.screen.detail.MovieDetailScreenRoute
+import com.kmp.movie.presentation.screen.person_detail.PersonDetailScreenRoute
+import com.kmp.movie.presentation.screen.search.SearchScreenRoute
+import com.kmp.movie.presentation.screen.main.MainScreenRoute
 
 
 @Composable
@@ -32,7 +32,7 @@ fun AppNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = Screens.Start,
+        startDestination = Screens.Main,
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
@@ -62,8 +62,8 @@ fun AppNavHost(
             )
         }
     ){
-        composable<Screens.Start>{
-            StartScreenRoute(
+        composable<Screens.Main>{
+            MainScreenRoute(
                 isLightTheme = isLightTheme,
                 onSelectTheme = onSelectTheme,
                 onGotoNavigateBack = {navController.popBackStack()},

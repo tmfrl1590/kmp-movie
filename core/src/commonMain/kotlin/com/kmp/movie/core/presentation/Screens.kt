@@ -8,7 +8,7 @@ import androidx.compose.material.icons.filled.Settings
 
 sealed interface Screens {
     @Serializable
-    data object Start: Screens
+    data object Main: Screens
     @Serializable
     data object Home: Screens
     @Serializable
