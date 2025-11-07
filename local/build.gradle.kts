@@ -36,6 +36,8 @@ kotlin {
 
             // coroutine
             implementation(libs.kotlinx.coroutines)
+
+            implementation(libs.koin.core)
         }
     }
 }

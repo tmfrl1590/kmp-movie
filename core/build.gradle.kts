@@ -47,6 +47,9 @@ kotlin {
             implementation(libs.ktor.client.logging)
 
             implementation(libs.kotlinx.serialization.json)
+
+            // koin
+            implementation(libs.koin.core)
         }
     }
 }
