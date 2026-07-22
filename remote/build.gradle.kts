@@ -48,7 +48,7 @@ kotlin {
 
 android {
     namespace = "com.kmp.movie.remote"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 28
     }

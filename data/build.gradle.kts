@@ -40,7 +40,7 @@ kotlin {
 
 android {
     namespace = "com.kmp.movie.data"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 28
     }
