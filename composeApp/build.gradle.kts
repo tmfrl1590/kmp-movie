@@ -78,8 +78,8 @@ android {
         applicationId = "com.kmp.movie"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 13
-        versionName = "1.1.1"
+        versionCode = 14
+        versionName = "1.1.2"
     }
     packaging {
         resources {
